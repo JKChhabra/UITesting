@@ -1,0 +1,203 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "2730",
+    "jobId" : "jobs/DONOT_OPEN_PYTHON_JOB",
+    "name" : "REL_PYTHON_DONOT_OPEN_JOB",
+    "schedule" : "0 0 0/1 * * ? 2090",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : true,
+    "defaultClusterSize" : "small",
+    "alerting" : {
+      "emails" : "abhisheks@prophecy.io",
+      "onStart" : true,
+      "onSuccess" : true,
+      "onFailure" : true
+    },
+    "processDefaultSettings" : {
+      "type" : "Inherited",
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      }
+    },
+    "availableFabrics" : [ {
+      "id" : "57",
+      "name" : "dev",
+      "clusterSizes" : {
+        "default" : "small",
+        "availableClusterSizes" : [ "small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    } ]
+  },
+  "processes" : {
+    "NPS8yE3MPdGr6u9FmRWwV" : {
+      "id" : "NPS8yE3MPdGr6u9FmRWwV",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "DONOT_OPEN_PYTHON",
+        "slug" : "DONOT_OPEN_PYTHON",
+        "x" : 100,
+        "y" : 100
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "out"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "pipelines/DONOT_OPEN_PYTHON",
+        "configurations" : {
+          "schema" : [ {
+            "name" : "JDBC_URL",
+            "kind" : {
+              "type" : "string",
+              "value" : "jdbc:mysql://18.144.156.219:3306/test_database"
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "JDBC_SOURCE_TABLE",
+            "kind" : {
+              "type" : "string",
+              "value" : "test_table"
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_STR",
+            "kind" : {
+              "type" : "string",
+              "value" : "jdbc_url-${JDBC_URL}"
+            },
+            "optional" : true,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_BOOLEAN",
+            "kind" : {
+              "type" : "boolean",
+              "value" : true
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_DOUBLE",
+            "kind" : {
+              "type" : "double",
+              "value" : 10012321.1232
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_INT",
+            "kind" : {
+              "type" : "int",
+              "value" : 97987
+            },
+            "optional" : true,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_FLOAT",
+            "kind" : {
+              "type" : "float",
+              "value" : 4567546.34543
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_SHORT",
+            "kind" : {
+              "type" : "short",
+              "value" : 120
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          }, {
+            "name" : "CONFIG_DB_SECRETS",
+            "kind" : {
+              "type" : "databricks_secret",
+              "value" : "qasecrets:mysql_user"
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          } ],
+          "instances" : {
+            "python_import" : [ "newfabric", "ebs_ssd", "dev1", "livy_kishore", "dev", "TEST-Automated_Livy.1", "default", "captain_livy" ]
+          },
+          "overrides" : {
+            "CONFIG_DOUBLE" : "12.12",
+            "CONFIG_STR" : "jdbc_url-${JDBC_URL}",
+            "CONFIG_FLOAT" : "12.12",
+            "CONFIG_DB_SECRETS" : "qasecrets:mysql_user",
+            "JDBC_URL" : "jdbc:mysql://18.144.156.219:3306/test_database",
+            "CONFIG_INT" : "12",
+            "CONFIG_BOOLEAN" : "false",
+            "JDBC_SOURCE_TABLE" : "test_table",
+            "CONFIG_SHORT" : "12"
+          },
+          "selectedInstance" : "default"
+        }
+      }
+    },
+    "dlNkaBZ5N_M0Meik4FAR-" : {
+      "id" : "dlNkaBZ5N_M0Meik4FAR-",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "Script_1",
+        "slug" : "Script",
+        "x" : 356,
+        "y" : 111.19999694824219
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "BowP8nN_tEx57jDG2TycH"
+        } ],
+        "outputs" : [ {
+          "id" : "M5PknE0vOJLQawcTZDnrI"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "code" : "print(\"hello\")"
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "AMUSS1lwQDqvAV_ALyhk5",
+    "source" : "NPS8yE3MPdGr6u9FmRWwV",
+    "target" : "dlNkaBZ5N_M0Meik4FAR-",
+    "sourcePort" : "out",
+    "targetPort" : "BowP8nN_tEx57jDG2TycH"
+  } ]
+}

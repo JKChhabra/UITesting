@@ -1,0 +1,148 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "2793",
+    "jobId" : "jobs/jo1",
+    "name" : "jo1",
+    "schedule" : "0 0 0 1/1 * ? *",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : false,
+    "defaultClusterSize" : "small",
+    "alerting" : {
+      "emails" : "",
+      "onStart" : false,
+      "onSuccess" : false,
+      "onFailure" : false
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "type" : "Inherited",
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      }
+    },
+    "availableFabrics" : [ {
+      "id" : "4889",
+      "name" : "dev",
+      "clusterSizes" : {
+        "default" : "small",
+        "availableClusterSizes" : [ "small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    }, {
+      "id" : "3326",
+      "name" : "dev",
+      "clusterSizes" : {
+        "default" : "Small",
+        "availableClusterSizes" : [ "Small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    }, {
+      "id" : "4746",
+      "name" : "dev_db",
+      "clusterSizes" : {
+        "default" : "small",
+        "availableClusterSizes" : [ "small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    } ]
+  },
+  "processes" : {
+    "CfeK5k-KRePyx0rymoXQx$$Ojb27kCDlWM-mcmFQmKuL" : {
+      "id" : "CfeK5k-KRePyx0rymoXQx$$Ojb27kCDlWM-mcmFQmKuL",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "Pipeline_0",
+        "slug" : "Pipeline_0",
+        "x" : 140,
+        "y" : 160
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "zBhkPx6BWJ-HFFpDCoMk_$$SnoqdwW9o0_89ds4MBWXP"
+        } ],
+        "outputs" : [ {
+          "id" : "f3v0of8mMHNyBJvD0bMPw$$qcQ93PrLev245_4kKkSGI"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "",
+        "configurations" : {
+          "schema" : [ ],
+          "instances" : { },
+          "overrides" : { },
+          "selectedInstance" : "default"
+        }
+      }
+    },
+    "UdR5hAXq7ZtYo-cStK-UN$$atEsD_JPQsQ3JT1PNkknG" : {
+      "id" : "UdR5hAXq7ZtYo-cStK-UN$$atEsD_JPQsQ3JT1PNkknG",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "PERF_UNITEST_GENERATE",
+        "slug" : "PERF_UNITEST_GENERATE",
+        "x" : 140,
+        "y" : 160
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uECV4cMEI83a9EF69Vblv$$_jjEYza78Asb2gxO1x6rE"
+        } ],
+        "outputs" : [ {
+          "id" : "CN7AYLTrZVW204ET29OCh$$b3Ps_heg8gC1IT9IkNl5u"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "pipelines/PERF_UNITEST_GENERATE",
+        "configurations" : {
+          "schema" : [ ],
+          "instances" : {
+            "python_uitest" : [ "default" ]
+          },
+          "overrides" : { },
+          "selectedInstance" : "default"
+        }
+      }
+    }
+  },
+  "connections" : [ ]
+}

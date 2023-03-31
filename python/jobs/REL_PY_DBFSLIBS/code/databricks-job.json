@@ -1,0 +1,107 @@
+{
+  "fabric_id" : "2404",
+  "components" : [ {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_BASIC",
+      "nodeName" : "PY_BASIC",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/EM_DISABLED_PYTHON_BASIC",
+      "nodeName" : "PY_DISABLED",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  } ],
+  "request" : {
+    "format" : "MULTI_TASK",
+    "name" : "REL_PY_DBFSLIBS",
+    "job_clusters" : [ {
+      "job_cluster_key" : "REL_PY_DBFSLIBS_default_small",
+      "new_cluster" : {
+        "spark_version" : "11.3.x-scala2.12",
+        "node_type_id" : "i3.xlarge",
+        "spark_conf" : {
+          "prophecy.metadata.fabric.id" : "2404",
+          "prophecy.metadata.job.uri" : "__PROJECT_ID_PLACEHOLDER__/jobs/REL_PY_DBFSLIBS",
+          "prophecy.metadata.is.interactive.run" : "false",
+          "prophecy.project.id" : "__PROJECT_ID_PLACEHOLDER__",
+          "prophecy.execution.service.url" : "wss://execution.dp.abhishek.dev.cloud.prophecy.io/eventws",
+          "prophecy.packages.path" : "{\"pipelines/PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/EM_DISABLED_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl\"}",
+          "prophecy.metadata.job.branch" : "__PROJECT_RELEASE_VERSION_PLACEHOLDER__",
+          "prophecy.metadata.url" : "__PROPHECY_URL_PLACEHOLDER__"
+        },
+        "num_workers" : 1,
+        "aws_attributes" : {
+          "first_on_demand" : 1,
+          "availability" : "SPOT_WITH_FALLBACK"
+        },
+        "driver_node_type_id" : "i3.xlarge"
+      }
+    } ],
+    "email_notifications" : {
+      "on_success" : [ "abhisheks@prophecy.io", "abhisheks@simpledatalabs.com" ]
+    },
+    "tasks" : [ {
+      "task_key" : "PY_BASIC",
+      "job_cluster_key" : "REL_PY_DBFSLIBS_default_small",
+      "python_wheel_task" : {
+        "package_name" : "PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default", "-O", "{}" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.3"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : {
+        "on_success" : [ "abhisheks@prophecy.io", "abhisheks@simpledatalabs.com" ]
+      },
+      "max_retries" : 0
+    }, {
+      "task_key" : "PY_DISABLED",
+      "depends_on" : [ {
+        "task_key" : "PY_BASIC"
+      } ],
+      "job_cluster_key" : "REL_PY_DBFSLIBS_default_small",
+      "python_wheel_task" : {
+        "package_name" : "SM_DISABLED_PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "ebs_ssd", "-O", "{\"c_string\":\"asdasd\"}" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.3"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/dev/abhishek/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : {
+        "on_success" : [ "abhisheks@prophecy.io", "abhisheks@simpledatalabs.com" ]
+      },
+      "max_retries" : 0
+    } ],
+    "max_concurrent_runs" : 1,
+    "schedule" : {
+      "quartz_cron_expression" : "0 0 0 * * ? 2090",
+      "timezone_id" : "GMT",
+      "pause_status" : "UNPAUSED"
+    }
+  },
+  "cluster_mode" : {
+    "clusterMode" : "Single"
+  }
+}

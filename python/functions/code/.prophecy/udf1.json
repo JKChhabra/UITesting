@@ -1,0 +1,1 @@
+{"initCode":"a=10","code":"@udf(returnType=IntegerType())\ndef squared_offset(value):\n    return value*a if value!=None else a*a"}

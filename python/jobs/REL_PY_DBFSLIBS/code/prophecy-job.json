@@ -1,0 +1,148 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "2404",
+    "jobId" : "jobs/REL_PY_DBFSLIBS",
+    "name" : "REL_PY_DBFSLIBS",
+    "schedule" : "0 0 0 * * ? 2090",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : true,
+    "defaultClusterSize" : "small",
+    "alerting" : {
+      "emails" : "abhisheks@prophecy.io,abhisheks@simpledatalabs.com",
+      "onStart" : false,
+      "onSuccess" : true,
+      "onFailure" : false
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "type" : "Inherited",
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "abhisheks@prophecy.io,abhisheks@simpledatalabs.com",
+        "onStart" : false,
+        "onSuccess" : true,
+        "onFailure" : false
+      }
+    },
+    "availableFabrics" : [ {
+      "id" : "57",
+      "name" : "dev",
+      "clusterSizes" : {
+        "default" : "small",
+        "availableClusterSizes" : [ "small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    } ]
+  },
+  "processes" : {
+    "ofsnAU_i0zY_n2ppTXTt1$$s2wi85ZYtn-pvCaz13R65" : {
+      "id" : "ofsnAU_i0zY_n2ppTXTt1$$s2wi85ZYtn-pvCaz13R65",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "PY_BASIC",
+        "slug" : "PY_BASIC",
+        "x" : 140,
+        "y" : 160
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ih7JtaD2UsgH39Px3zB5L$$xPzQghlHNEn9T39ZNptmL"
+        } ],
+        "outputs" : [ {
+          "id" : "Vl_DXXL7OFyRCXtauyLB3$$pyv4Edbxgd_TSg8TTvFyK"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "pipelines/PYTHON_BASIC",
+        "configurations" : {
+          "schema" : [ {
+            "name" : "c_string",
+            "kind" : {
+              "type" : "string",
+              "value" : "test string"
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          } ],
+          "instances" : {
+            "python_import" : [ "newfabric", "ebs_ssd", "dev_11rt", "dev1", "dev", "default", "captain_livy" ]
+          },
+          "overrides" : { },
+          "selectedInstance" : "default"
+        }
+      }
+    },
+    "rgPABL5pP8O1JlK2El5-h$$-t2mHTaSktxuOz4RRp9u1" : {
+      "id" : "rgPABL5pP8O1JlK2El5-h$$-t2mHTaSktxuOz4RRp9u1",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "PY_DISABLED",
+        "slug" : "PY_DISABLED",
+        "x" : 500,
+        "y" : 160
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "245hax0BQSewKs1WBtTMd$$6ZSuo8Yg-SLigc_8RXCkL"
+        } ],
+        "outputs" : [ {
+          "id" : "Oj2s8jrzLRC3hSb9oBSUH$$i5Bg7yP07NoVhT6-J81Iq"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "pipelines/EM_DISABLED_PYTHON_BASIC",
+        "configurations" : {
+          "schema" : [ {
+            "name" : "c_string",
+            "kind" : {
+              "type" : "string",
+              "value" : "test string"
+            },
+            "optional" : false,
+            "isWorkflowNodeConfiguration" : false
+          } ],
+          "instances" : {
+            "python_import" : [ "newfabric", "ebs_ssd", "dev_11rt", "dev1", "dev", "default", "captain_livy" ]
+          },
+          "overrides" : {
+            "c_string" : "asdasd"
+          },
+          "selectedInstance" : "ebs_ssd"
+        }
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "NmTgvfRChESKWzm-fsWrD",
+    "source" : "ofsnAU_i0zY_n2ppTXTt1$$s2wi85ZYtn-pvCaz13R65",
+    "target" : "rgPABL5pP8O1JlK2El5-h$$-t2mHTaSktxuOz4RRp9u1",
+    "sourcePort" : "Vl_DXXL7OFyRCXtauyLB3$$pyv4Edbxgd_TSg8TTvFyK",
+    "targetPort" : "245hax0BQSewKs1WBtTMd$$6ZSuo8Yg-SLigc_8RXCkL"
+  } ]
+}

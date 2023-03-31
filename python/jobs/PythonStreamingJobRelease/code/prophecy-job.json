@@ -1,0 +1,122 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "57",
+    "jobId" : "jobs/PythonStreamingJobRelease",
+    "name" : "PythonStreamingJobRelease",
+    "schedule" : "0 0 0 * * ? 2090",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : true,
+    "defaultClusterSize" : "small",
+    "alerting" : {
+      "emails" : "abhisheks@prophecy.io,abhisheks@simpledatalabs.com",
+      "onStart" : false,
+      "onSuccess" : true,
+      "onFailure" : false
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "type" : "Inherited",
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      }
+    },
+    "availableFabrics" : [ {
+      "id" : "57",
+      "name" : "dev",
+      "clusterSizes" : {
+        "default" : "small",
+        "availableClusterSizes" : [ "small" ]
+      },
+      "pylibsResolutionMode" : {
+        "PublicCentral" : { }
+      },
+      "scalalibsResolutionMode" : {
+        "PublicCentral" : { }
+      }
+    } ]
+  },
+  "processes" : {
+    "kRGG8Q7aHpVIjf_cOzpvp$$PmrNdsBic0PMuBeQwUIDX" : {
+      "id" : "kRGG8Q7aHpVIjf_cOzpvp$$PmrNdsBic0PMuBeQwUIDX",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "Script_1",
+        "slug" : "Script_1",
+        "x" : 210,
+        "y" : 20
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "AOz-65wAziAP3_9hiIkjn$$95F1hYWwuOXYWzb89iN6f"
+        } ],
+        "outputs" : [ {
+          "id" : "A33CFNs9v7IR84pVSF4ro$$YeE-ER6jG5zjdBeNiCctm"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "code" : "print(\"hello\")"
+      }
+    },
+    "csb8lnh6oMBjUlsHfPWIr" : {
+      "id" : "csb8lnh6oMBjUlsHfPWIr",
+      "component" : "Pipeline",
+      "metadata" : {
+        "label" : "PythonStreamingRelease",
+        "slug" : "PythonStreamingRelease",
+        "x" : -150,
+        "y" : 20
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "out"
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        }
+      },
+      "properties" : {
+        "pipelineId" : "pipelines/PythonStreamingRelease",
+        "configurations" : {
+          "schema" : [ ],
+          "instances" : {
+            "python_import" : [ "default" ]
+          },
+          "overrides" : { },
+          "selectedInstance" : "default"
+        }
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "7_ccZl0uTihEq7BXNignc",
+    "source" : "csb8lnh6oMBjUlsHfPWIr",
+    "target" : "kRGG8Q7aHpVIjf_cOzpvp$$PmrNdsBic0PMuBeQwUIDX",
+    "sourcePort" : "out",
+    "targetPort" : "AOz-65wAziAP3_9hiIkjn$$95F1hYWwuOXYWzb89iN6f"
+  } ]
+}

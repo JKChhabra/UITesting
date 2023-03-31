@@ -1,0 +1,408 @@
+{
+  "fabric_id" : "2068",
+  "components" : [ {
+    "ScriptComponent" : {
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_3--342935073.py",
+      "nodeName" : "Script_3",
+      "id" : "BqtvhE7mT9OmjcCsXzX6m",
+      "language" : "python",
+      "content" : "print(\"hello\")"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_BASIC",
+      "nodeName" : "PythonBasic1",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_BASIC",
+      "nodeName" : "Python_Basic4",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/IO_PYTHON_BASIC",
+      "nodeName" : "EM_IO",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_IO_PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/EM_DISABLED_PYTHON_BASIC",
+      "nodeName" : "EM_Disabled",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_SG_SRC",
+      "nodeName" : "PythonSGSrc2",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_SG_SRC",
+      "nodeName" : "PythonDepMgmt",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "PipelineComponent" : {
+      "id" : "pipelines/PYTHON_DEP_MGMT_ALL",
+      "nodeName" : "Py_DEP_MGMT",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_DEP_MGMT_ALL-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  }, {
+    "ScriptComponent" : {
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_2--342935074.py",
+      "nodeName" : "Script_2",
+      "id" : "rdqvpn73n-BqBR1G2fake",
+      "language" : "python",
+      "content" : "print(\"hello\")"
+    }
+  }, {
+    "ScriptComponent" : {
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_4--342935072.py",
+      "nodeName" : "Script_4",
+      "id" : "NTGTNvk4v6a6_uDyp8r1S",
+      "language" : "python",
+      "content" : "print(\"hello\")"
+    }
+  }, {
+    "ScriptComponent" : {
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_1--342935075.py",
+      "nodeName" : "Script_1",
+      "id" : "t5tlrRN0coqhaPFvCYaV7",
+      "language" : "python",
+      "content" : "print(\"hello\")"
+    }
+  } ],
+  "request" : {
+    "format" : "MULTI_TASK",
+    "name" : "REL_PYTHON_SINGLE_CLUSTER_JOB",
+    "job_clusters" : [ {
+      "job_cluster_key" : "REL_PYTHON_SINGLE_CLUSTER_JOB_default_small",
+      "new_cluster" : {
+        "spark_version" : "11.3.x-scala2.12",
+        "node_type_id" : "i3.xlarge",
+        "spark_conf" : {
+          "prophecy.metadata.fabric.id" : "2068",
+          "prophecy.metadata.job.uri" : "__PROJECT_ID_PLACEHOLDER__/jobs/PYTHON_SINGLE_CLUSTER_JOB",
+          "prophecy.metadata.is.interactive.run" : "false",
+          "prophecy.project.id" : "__PROJECT_ID_PLACEHOLDER__",
+          "prophecy.execution.service.url" : "wss://execution.dp.uitesting.prophecy.io/eventws",
+          "prophecy.packages.path" : "{\"pipelines/PYTHON_SG_SRC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl\",\"pipelines/IO_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_IO_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_DEP_MGMT_ALL\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_DEP_MGMT_ALL-1.0-py3-none-any.whl\",\"pipelines/EM_DISABLED_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl\"}",
+          "prophecy.metadata.job.branch" : "__PROJECT_RELEASE_VERSION_PLACEHOLDER__",
+          "prophecy.metadata.url" : "__PROPHECY_URL_PLACEHOLDER__",
+          "prophecy.execution.metrics.interims.table" : "prophecy.interims_manual",
+          "prophecy.execution.metrics.pipeline-metrics.table" : "prophecy.pipeline_runs_manual",
+          "prophecy.execution.metrics.component-metrics.table" : "prophecy.component_runs_manual"
+        },
+        "num_workers" : 1,
+        "aws_attributes" : {
+          "first_on_demand" : 1,
+          "availability" : "SPOT_WITH_FALLBACK"
+        },
+        "driver_node_type_id" : "i3.xlarge"
+      }
+    }, {
+      "job_cluster_key" : "Cluster_2",
+      "new_cluster" : {
+        "spark_version" : "11.3.x-scala2.12",
+        "node_type_id" : "i3.xlarge",
+        "spark_conf" : {
+          "prophecy.metadata.fabric.id" : "2068",
+          "prophecy.metadata.job.uri" : "__PROJECT_ID_PLACEHOLDER__/jobs/PYTHON_SINGLE_CLUSTER_JOB",
+          "prophecy.metadata.is.interactive.run" : "false",
+          "prophecy.project.id" : "__PROJECT_ID_PLACEHOLDER__",
+          "prophecy.execution.service.url" : "wss://execution.dp.uitesting.prophecy.io/eventws",
+          "prophecy.packages.path" : "{\"pipelines/PYTHON_SG_SRC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl\",\"pipelines/IO_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_IO_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_DEP_MGMT_ALL\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_DEP_MGMT_ALL-1.0-py3-none-any.whl\",\"pipelines/EM_DISABLED_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl\"}",
+          "prophecy.metadata.job.branch" : "__PROJECT_RELEASE_VERSION_PLACEHOLDER__",
+          "prophecy.metadata.url" : "__PROPHECY_URL_PLACEHOLDER__",
+          "prophecy.execution.metrics.interims.table" : "prophecy.interims_manual",
+          "prophecy.execution.metrics.pipeline-metrics.table" : "prophecy.pipeline_runs_manual",
+          "prophecy.execution.metrics.component-metrics.table" : "prophecy.component_runs_manual"
+        },
+        "num_workers" : 1,
+        "aws_attributes" : {
+          "first_on_demand" : 1,
+          "availability" : "SPOT_WITH_FALLBACK"
+        },
+        "driver_node_type_id" : "i3.xlarge"
+      }
+    }, {
+      "job_cluster_key" : "Cluster_1",
+      "new_cluster" : {
+        "spark_version" : "11.3.x-scala2.12",
+        "node_type_id" : "i3.xlarge",
+        "spark_conf" : {
+          "prophecy.metadata.fabric.id" : "2068",
+          "prophecy.metadata.job.uri" : "__PROJECT_ID_PLACEHOLDER__/jobs/PYTHON_SINGLE_CLUSTER_JOB",
+          "prophecy.metadata.is.interactive.run" : "false",
+          "prophecy.project.id" : "__PROJECT_ID_PLACEHOLDER__",
+          "prophecy.execution.service.url" : "wss://execution.dp.uitesting.prophecy.io/eventws",
+          "prophecy.packages.path" : "{\"pipelines/PYTHON_SG_SRC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl\",\"pipelines/IO_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_IO_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_DEP_MGMT_ALL\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_DEP_MGMT_ALL-1.0-py3-none-any.whl\",\"pipelines/EM_DISABLED_PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl\",\"pipelines/PYTHON_BASIC\":\"dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl\"}",
+          "prophecy.metadata.job.branch" : "__PROJECT_RELEASE_VERSION_PLACEHOLDER__",
+          "prophecy.metadata.url" : "__PROPHECY_URL_PLACEHOLDER__",
+          "prophecy.execution.metrics.interims.table" : "prophecy.interims_manual",
+          "prophecy.execution.metrics.pipeline-metrics.table" : "prophecy.pipeline_runs_manual",
+          "prophecy.execution.metrics.component-metrics.table" : "prophecy.component_runs_manual"
+        },
+        "num_workers" : 2,
+        "aws_attributes" : {
+          "first_on_demand" : 1,
+          "availability" : "SPOT_WITH_FALLBACK"
+        },
+        "driver_node_type_id" : "i3.xlarge"
+      }
+    } ],
+    "email_notifications" : { },
+    "tasks" : [ {
+      "task_key" : "Script_3",
+      "job_cluster_key" : "Cluster_1",
+      "spark_python_task" : {
+        "python_file" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_3--342935073.py"
+      },
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "PythonBasic1",
+      "depends_on" : [ {
+        "task_key" : "Script_3"
+      } ],
+      "job_cluster_key" : "Cluster_1",
+      "python_wheel_task" : {
+        "package_name" : "PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "Python_Basic4",
+      "job_cluster_key" : "Cluster_2",
+      "python_wheel_task" : {
+        "package_name" : "PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "EM_IO",
+      "job_cluster_key" : "REL_PYTHON_SINGLE_CLUSTER_JOB_default_small",
+      "python_wheel_task" : {
+        "package_name" : "SM_IO_PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "dev_11rt", "-O", "{\"c_string\":\"this is another son\"}" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_IO_PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "EM_Disabled",
+      "depends_on" : [ {
+        "task_key" : "EM_IO"
+      } ],
+      "job_cluster_key" : "Cluster_1",
+      "python_wheel_task" : {
+        "package_name" : "SM_DISABLED_PYTHON_BASIC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/SM_DISABLED_PYTHON_BASIC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "PythonSGSrc2",
+      "depends_on" : [ {
+        "task_key" : "PythonBasic1"
+      } ],
+      "job_cluster_key" : "REL_PYTHON_SINGLE_CLUSTER_JOB_default_small",
+      "python_wheel_task" : {
+        "package_name" : "REL_PY_PIP_SG_SRC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "PythonDepMgmt",
+      "depends_on" : [ {
+        "task_key" : "EM_IO"
+      } ],
+      "job_cluster_key" : "REL_PYTHON_SINGLE_CLUSTER_JOB_default_small",
+      "python_wheel_task" : {
+        "package_name" : "REL_PY_PIP_SG_SRC",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "default" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_SG_SRC-1.0-py3-none-any.whl"
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "Py_DEP_MGMT",
+      "depends_on" : [ {
+        "task_key" : "EM_IO"
+      } ],
+      "job_cluster_key" : "Cluster_2",
+      "python_wheel_task" : {
+        "package_name" : "REL_PY_PIP_DEP_MGMT_ALL",
+        "entry_point" : "main",
+        "parameters" : [ "-i", "test-instance5", "-O", "{\"CONFIG_DOUBLE\":33,\"CONFIG_FLOAT\":33.33,\"CONFIG_INT\":33,\"CONFIG_BOOLEAN\":true,\"CONFIG_SHORT\":33}" ]
+      },
+      "libraries" : [ {
+        "maven" : {
+          "coordinates" : "io.prophecy:prophecy-libs_2.12:3.3.0-7.0.7"
+        }
+      }, {
+        "pypi" : {
+          "package" : "prophecy-libs==1.4.2"
+        }
+      }, {
+        "whl" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/pipeline/REL_PY_PIP_DEP_MGMT_ALL-1.0-py3-none-any.whl"
+      }, {
+        "maven" : {
+          "coordinates" : "mysql:mysql-connector-java:8.0.29",
+          "exclusions" : [ ]
+        }
+      }, {
+        "pypi" : {
+          "package" : "matplotlib==3.5.2"
+        }
+      }, {
+        "pypi" : {
+          "package" : "pandas>=1.4.2"
+        }
+      }, {
+        "pypi" : {
+          "package" : "numpy==1.22.*"
+        }
+      }, {
+        "pypi" : {
+          "package" : "requests~=2.28.0"
+        }
+      }, {
+        "pypi" : {
+          "package" : "scipy>=1.6.3,<=1.8.1",
+          "repo" : ""
+        }
+      }, {
+        "pypi" : {
+          "package" : "torch==1.11.0"
+        }
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "Script_2",
+      "depends_on" : [ {
+        "task_key" : "EM_IO"
+      } ],
+      "job_cluster_key" : "REL_PYTHON_SINGLE_CLUSTER_JOB_default_small",
+      "spark_python_task" : {
+        "python_file" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_2--342935074.py"
+      },
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "Script_4",
+      "depends_on" : [ {
+        "task_key" : "Py_DEP_MGMT"
+      } ],
+      "job_cluster_key" : "Cluster_2",
+      "spark_python_task" : {
+        "python_file" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_4--342935072.py"
+      },
+      "email_notifications" : { },
+      "max_retries" : 0
+    }, {
+      "task_key" : "Script_1",
+      "depends_on" : [ {
+        "task_key" : "Script_2"
+      } ],
+      "job_cluster_key" : "Cluster_2",
+      "spark_python_task" : {
+        "python_file" : "dbfs:/FileStore/prophecy/artifacts/prophecy/uitesting/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/REL_PYTHON_SINGLE_CLUSTER_JOB/Script_1--342935075.py"
+      },
+      "email_notifications" : { },
+      "max_retries" : 0
+    } ],
+    "schedule" : {
+      "quartz_cron_expression" : "0 0 0 9 * ? 2090",
+      "timezone_id" : "GMT",
+      "pause_status" : "UNPAUSED"
+    }
+  },
+  "cluster_mode" : {
+    "clusterMode" : "Single"
+  }
+}
