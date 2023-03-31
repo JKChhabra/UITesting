@@ -1,0 +1,24 @@
+package com.scala.main.job1.graph
+
+import io.prophecy.libs._
+import com.scala.main.job1.config.ConfigStore._
+import com.scala.main.job1.config.Context
+import com.scala.main.job1.config._
+import org.apache.spark._
+import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types._
+import org.apache.spark.sql.expressions._
+import java.time._
+package object Subgraph_3 {
+
+  def apply(context: Context, in0: DataFrame): DataFrame = {
+    val df_Reformat_6 = Reformat_6(context, in0).interim(
+      "Subgraph_3",
+      "dpM1a3Ympr8yGGohSD0Pe$$RVUG-hDdhFksN995vtlDw",
+      "n5apy_ib4bkma0uwVAv6C$$vwmyRZtgYigXf-7KuTK1O"
+    )
+    df_Reformat_6
+  }
+
+}

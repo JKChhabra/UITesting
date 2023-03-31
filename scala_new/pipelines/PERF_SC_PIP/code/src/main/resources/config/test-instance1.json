@@ -1,0 +1,12 @@
+{
+  "CONFIG_DOUBLE" : 11,
+  "c_sql_expr" : "%[^aeiouAB]@%",
+  "CONFIG_FLOAT" : 34,
+  "CONFIG_INT" : 123,
+  "CONFIG_BOOLEAN" : false,
+  "c_limit_11" : 1,
+  "c_record_complex" : {
+    "cr_record" : { }
+  },
+  "c_config_1" : "config 1 test instance 1"
+}

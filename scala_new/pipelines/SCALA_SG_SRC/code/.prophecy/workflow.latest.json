@@ -1,0 +1,3679 @@
+{
+  "metainfo" : {
+    "id" : "1",
+    "language" : "scala",
+    "fabricId" : "2730",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "scala",
+      "udfs" : [ ]
+    },
+    "udafs" : {
+      "language" : "scala",
+      "code" : "package udfs\n\nimport org.apache.spark.sql.expressions._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql._\n\n/**\n  * Here you can define your custom aggregate functions.\n  *\n  * Make sure to register your `udafs` in the register_udafs function below.\n  *\n  * Example:\n  *\n  * object GeometricMean extends UserDefinedAggregateFunction {\n  *   // This is the input fields for your aggregate function.\n  *   override def inputSchema: org.apache.spark.sql.types.StructType =\n  *     StructType(StructField(\"value\", DoubleType) :: Nil)\n  *\n  *   // This is the internal fields you keep for computing your aggregate.\n  *   override def bufferSchema: StructType = StructType(\n  *     StructField(\"count\", LongType) ::\n  *     StructField(\"product\", DoubleType) :: Nil\n  *   )\n  *\n  *   // This is the output type of your aggregatation function.\n  *   override def dataType: DataType = DoubleType\n  *\n  *   override def deterministic: Boolean = true\n  *\n  *   // This is the initial value for your buffer schema.\n  *   override def initialize(buffer: MutableAggregationBuffer): Unit = {\n  *     buffer(0) = 0L\n  *     buffer(1) = 1.0\n  *   }\n  *\n  *   // This is how to update your buffer schema given an input.\n  *   override def update(buffer: MutableAggregationBuffer, input: Row): Unit = {\n  *     buffer(0) = buffer.getAs[Long](0) + 1\n  *     buffer(1) = buffer.getAs[Double](1) * input.getAs[Double](0)\n  *   }\n  *\n  *   // This is how to merge two objects with the bufferSchema type.\n  *   override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {\n  *     buffer1(0) = buffer1.getAs[Long](0) + buffer2.getAs[Long](0)\n  *     buffer1(1) = buffer1.getAs[Double](1) * buffer2.getAs[Double](1)\n  *   }\n  *\n  *   // This is where you output the final value, given the final value of your bufferSchema.\n  *   override def evaluate(buffer: Row): Any = {\n  *     math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0))\n  *   }\n  * }\n  *\n  */\n\n\nobject UDAFs {\n  /**\n    * Registers UDAFs with Spark SQL\n    */\n  def registerUDAFs(spark: SparkSession): Unit = {\n    /**\n      * Example:\n      *\n      * spark.udf.register(\"gm\", GeometricMean)\n      *\n      */\n\n\n  }\n}\n"
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ {
+      "type" : "coordinates",
+      "coordinates" : "mysql:mysql-connector-java:8.0.29",
+      "name" : "mysql",
+      "enabled" : false,
+      "id" : "59965868",
+      "exclusions" : [ ]
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "org.postgresql:postgresql:42.3.4",
+      "name" : "postgres",
+      "enabled" : false,
+      "id" : "1360721423",
+      "exclusions" : [ ]
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "org.scalanlp:epic_2.12:0.5",
+      "name" : "epic",
+      "enabled" : false,
+      "id" : "418005485",
+      "exclusions" : [ ],
+      "repo" : "https://repo.maven.apache.org/maven2/"
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "org.typelevel:cats-core_2.12:2.6.1",
+      "name" : "cats",
+      "enabled" : false,
+      "id" : "1575366423",
+      "exclusions" : [ ]
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "org.springframework:spring-beans:5.3.19",
+      "name" : "spring",
+      "enabled" : false,
+      "id" : "611418782",
+      "exclusions" : [ ]
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "com.crealytics:spark-excel_2.12:3.2.1_0.17.1",
+      "name" : "spark-excel",
+      "enabled" : false,
+      "id" : "368609749",
+      "exclusions" : [ ]
+    }, {
+      "type" : "coordinates",
+      "coordinates" : "io.prophecy:prophecy-libs_2.12:4.0.0-3.2.0",
+      "name" : "prophecy-libs-4.0.0",
+      "enabled" : false,
+      "id" : "GXM_V",
+      "exclusions" : [ ],
+      "repo" : "https://prophecyio.jfrog.io/artifactory/default-sbt-release/"
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Full",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 51
+    },
+    "topLevelPackage" : "com.main.sub_graph_src1"
+  },
+  "connections" : [ {
+    "id" : "-RnCeI9_DmDAE2R2Eyl8T",
+    "source" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+    "sourcePort" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+    "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+    "targetPort" : "JmDi7cY_IrxrHpuH7A2GC$$oWKDAUQ81iYkIKJlb2D3k"
+  }, {
+    "id" : "8PE-1oVA47oExDKTnKqbv",
+    "source" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+    "sourcePort" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+    "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+    "targetPort" : "psUsGXiIH04Qe01Hhlsii$$xnMVyLkjosTaaa0eimeSm"
+  }, {
+    "id" : "z1jqyAGTfjs4m32-P3xkS",
+    "source" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+    "sourcePort" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+    "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+    "targetPort" : "0onyz6Y5pzKgZQ7B0KT9A$$ewwSzvpDatq_c7TBhFcC1"
+  }, {
+    "id" : "BxpwTZouPlYrU-klTmEcd",
+    "source" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+    "sourcePort" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+    "target" : "sguXN3Qzk-rrsIeKc-lwj$$6nXDsqNXOLVMJZNMjkPv0",
+    "targetPort" : "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq"
+  }, {
+    "id" : "Bv4IVyeS05C8dZe5eATrb",
+    "source" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+    "sourcePort" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+    "target" : "zS5n3k8HQ3HkziA9bYBKF$$PDoyluybxcGiqi79lWkPX",
+    "targetPort" : "nNTYeHarH9UOxIZHcx7pZ$$Yka36qDoWxM9HOS2rZEwX"
+  } ],
+  "processes" : {
+    "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ" : {
+      "id" : "8qziesy9-ngcOeLhVFmCK$$oTFH-zftsblU11s6LLMBZ",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "src_parquet_all_type_and_partition_withspacehyphens",
+        "slug" : "src_parquet_all_type_and_partition_withspacehyphens",
+        "x" : 776.8000000000001,
+        "y" : 376.80000000000007,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "tZblttEX9pep-3_lCvBEW$$zkLqZI_HCzpfACOL1uLTn",
+          "slug" : "out",
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/src_parquet_all_type_and_partition_withspacehyphens"
+      }
+    },
+    "sguXN3Qzk-rrsIeKc-lwj$$6nXDsqNXOLVMJZNMjkPv0" : {
+      "id" : "sguXN3Qzk-rrsIeKc-lwj$$6nXDsqNXOLVMJZNMjkPv0",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "Reformat_1",
+        "slug" : "Reformat_1",
+        "x" : 1299.9416666666668,
+        "y" : 204.21666666666673,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq",
+          "slug" : "in",
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "97nBNPy4v0oHeGU_zRGWw$$luZlhcxAsoGVl412RoaFq",
+          "slug" : "out",
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c- short", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c  - int", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##- c long", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_decimal  -  ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_float-__  ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c -  boolean _  ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_double", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c-string", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_date-for today", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_timestamp  __ for--today", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array-int  _ int", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array-string  _ string", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array--long", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array-- boolean ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##-- c_array_timestamp -- ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array -- float", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_array -- decimal", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##c_struct -- _  ", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_short", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_int", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_long", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_decimal", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_float", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_boolean", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_double", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_string", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_date", "2HBpXkCTDct8sDBrLfkj8$$C-QdNx9siOlkpWQL1D4jq##p_timestamp" ],
+        "expressions" : [ {
+          "target" : "c- short",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c- short`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c  - int",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c  - int`"
+          },
+          "description" : ""
+        }, {
+          "target" : "- c long",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`- c long`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_decimal  -  ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_decimal  -  `"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_float-__  ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_float-__  `"
+          },
+          "description" : ""
+        }, {
+          "target" : "c -  boolean _  ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c -  boolean _  `"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_double",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "c_double"
+          },
+          "description" : ""
+        }, {
+          "target" : "c-string",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c-string`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_date-for today",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_date-for today`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_timestamp  __ for--today",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_timestamp  __ for--today`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array-int  _ int",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array-int  _ int`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array-string  _ string",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array-string  _ string`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array--long",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array--long`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array-- boolean ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array-- boolean `"
+          },
+          "description" : ""
+        }, {
+          "target" : "-- c_array_timestamp -- ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`-- c_array_timestamp -- `"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array -- float",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array -- float`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_array -- decimal",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_array -- decimal`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c_struct -- _  ",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c_struct -- _  `"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_short",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_short"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_int",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_int"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_long",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_long"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_decimal",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_decimal"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_float",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_float"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_boolean",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_boolean"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_double",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_double"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_string",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_string"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_date",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_date"
+          },
+          "description" : ""
+        }, {
+          "target" : "p_timestamp",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "p_timestamp"
+          },
+          "description" : ""
+        } ]
+      }
+    },
+    "zS5n3k8HQ3HkziA9bYBKF$$PDoyluybxcGiqi79lWkPX" : {
+      "id" : "zS5n3k8HQ3HkziA9bYBKF$$PDoyluybxcGiqi79lWkPX",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "Reformat_2",
+        "slug" : "Reformat_2",
+        "x" : 1307.141666666667,
+        "y" : 570.8166666666666,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "nNTYeHarH9UOxIZHcx7pZ$$Yka36qDoWxM9HOS2rZEwX",
+          "slug" : "in",
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "Yg9BtDqf0TxmaRYho1Lh9$$0p_ZBE_H6Fgrzgzdg6M4u",
+          "slug" : "out",
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false
+      },
+      "properties" : {
+        "columnsSelector" : [ "nNTYeHarH9UOxIZHcx7pZ$$Yka36qDoWxM9HOS2rZEwX##c- short", "nNTYeHarH9UOxIZHcx7pZ$$Yka36qDoWxM9HOS2rZEwX##c  - int" ],
+        "expressions" : [ {
+          "target" : "c- short",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c- short`"
+          },
+          "description" : ""
+        }, {
+          "target" : "c  - int",
+          "expression" : {
+            "format" : "sql",
+            "expression" : "`c  - int`"
+          },
+          "description" : ""
+        } ]
+      }
+    },
+    "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz" : {
+      "id" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+      "component" : "Subgraph",
+      "metadata" : {
+        "label" : "Subgraph_1",
+        "slug" : "Subgraph_1",
+        "x" : 1303.4833333333333,
+        "y" : 370.83333333333337,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "JmDi7cY_IrxrHpuH7A2GC$$oWKDAUQ81iYkIKJlb2D3k",
+          "slug" : "in0",
+          "isStreaming" : false
+        }, {
+          "id" : "psUsGXiIH04Qe01Hhlsii$$xnMVyLkjosTaaa0eimeSm",
+          "slug" : "in1",
+          "isStreaming" : false
+        }, {
+          "id" : "0onyz6Y5pzKgZQ7B0KT9A$$ewwSzvpDatq_c7TBhFcC1",
+          "slug" : "in2",
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "ZQDoycQsuVJ2jJiD25MVg$$MvAoCBmhBl3Ifisjr12gz",
+          "slug" : "out0",
+          "isStreaming" : false
+        }, {
+          "id" : "hxJJCXjo1BfX7RM97eSli$$6KH5MX0UZqC9AVf0jnY7l",
+          "slug" : "out1",
+          "isStreaming" : false
+        }, {
+          "id" : "juDtv8EkA83K275JteybN$$5hBdvSu93SApl8quCg7DC",
+          "slug" : "out2",
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false
+      },
+      "properties" : {
+        "packageName" : "org.scala",
+        "externalId" : "subgraphs/all_type",
+        "name" : "all_type_scala_sg"
+      },
+      "connections" : [ {
+        "id" : "7tQxwJ-Ab99l7-0x-lbpz",
+        "source" : "A9rElKDgLrUiv9NV-Gb_N$$oLcoyWSajB96cj_UjB7gM",
+        "sourcePort" : "0NwLDePbq8XoET6rLo-n3$$qqbCnjgSFxmc9ap6Q2yzj",
+        "target" : "WwV8YcgqfDbTr1Qjw-_ub$$Dw-4lZfpoefk0R5ggK4qG",
+        "targetPort" : "hHK1gkxaT9W8dv5rdn3SV$$TG-kppVGzir0woO4QO0Qs"
+      }, {
+        "id" : "8RwCPOCvrBl2DNJVP_3LJ",
+        "source" : "A9rElKDgLrUiv9NV-Gb_N$$oLcoyWSajB96cj_UjB7gM",
+        "sourcePort" : "0NwLDePbq8XoET6rLo-n3$$qqbCnjgSFxmc9ap6Q2yzj",
+        "target" : "UAoeMkiNt9Kl_Tr2PMzV3$$zFNSiTxBP1KaPi2VfICC2",
+        "targetPort" : "ignb56hmgM2yz9DHIoeBm$$WFdj4mbNYBS1iFb3bqhN0"
+      }, {
+        "id" : "BM9hJb3NynaCgdsOfc2jD",
+        "source" : "hUP1i867OpQpUfEFUJCQy$$rvaoeoJj8DewfxhtkNNQJ",
+        "sourcePort" : "IOGnwjIuO1YjIb-sLJyha$$HTF8HqpP8_naw8yJ3Ttq2",
+        "target" : "lgmqnTtMR3qcVjlH2Ep35$$JFzi8SGtBpkzG93fbSUBl",
+        "targetPort" : "aQ3I6Xlb7XSyUur0AD9Uf$$gTNg71wzHZSAW-quEqWpT"
+      }, {
+        "id" : "NopSUga2gfI5gkBnCCVUb",
+        "source" : "lgmqnTtMR3qcVjlH2Ep35$$JFzi8SGtBpkzG93fbSUBl",
+        "sourcePort" : "UULbpwesGwistLf0QlHPk$$xokbT7m8fnwwKYBWPVHA1",
+        "target" : "l-CYWkwAxWLBq7BtZXNmc$$CzZ_nMlPk_N3h120ksLg2",
+        "targetPort" : "l2Gb1pRtvNR2tBrj1WrSs$$lkjvdKJqWbw6SQYlNxdXG"
+      }, {
+        "id" : "ri5Dyn_C36U_1CfN0sJDs",
+        "source" : "l-CYWkwAxWLBq7BtZXNmc$$CzZ_nMlPk_N3h120ksLg2",
+        "sourcePort" : "Ddaz4jJQzSi44fZRicVSW$$A-dLHNaaqmXCBIkQv2ILR",
+        "target" : "4zrXJ1pBVISuC3q-XDTmZ$$vxGMCZONRGKNbspYxFRe2",
+        "targetPort" : "xALKBDqeByJtLXfo1WOKO$$vtDlZ78-42g_OqoIvj_oq"
+      }, {
+        "id" : "0Qg1tM-Iipa_QAhifA0KD",
+        "source" : "4zrXJ1pBVISuC3q-XDTmZ$$vxGMCZONRGKNbspYxFRe2",
+        "sourcePort" : "g6spxFdnq3qgPqw265z3O$$Xkqn59uh8MVUzVKw9kVy4",
+        "target" : "thGcHosI_1BgWDJrHjFoV$$8oixU_uuOK_-9cEZ1A_Dr",
+        "targetPort" : "uOaGFGF7VHHHjePAdbzbk$$CKcdgJxoxZ9bUKLD21jFx"
+      }, {
+        "id" : "LB9E472urHwkm9X-GJJlX",
+        "source" : "thGcHosI_1BgWDJrHjFoV$$8oixU_uuOK_-9cEZ1A_Dr",
+        "sourcePort" : "gtWt2VSgvUB0J7hcxUL0n$$1G8bqF_pqkuOhr3YeV7UF",
+        "target" : "2364u3XyEfqkcOFGPdruQ$$EW7rZeQgZzUUvT2-nuAEC",
+        "targetPort" : "-axKeXpWxFMz9TEheBjlQ$$FNOZSMgJzHLx9kgBQdH3Z"
+      }, {
+        "id" : "xzAzyRttsfW1FE0NRdfos",
+        "source" : "thGcHosI_1BgWDJrHjFoV$$8oixU_uuOK_-9cEZ1A_Dr",
+        "sourcePort" : "gtWt2VSgvUB0J7hcxUL0n$$1G8bqF_pqkuOhr3YeV7UF",
+        "target" : "2364u3XyEfqkcOFGPdruQ$$EW7rZeQgZzUUvT2-nuAEC",
+        "targetPort" : "BKtf6NqTqxsrFVFw4mmPv$$TM5pz33CevEDdTvVVt_tt"
+      }, {
+        "id" : "dWakDf-aY3kpMM7dYjtwt",
+        "source" : "2364u3XyEfqkcOFGPdruQ$$EW7rZeQgZzUUvT2-nuAEC",
+        "sourcePort" : "Vd1zEA7MfS5nw7LTlqhDD$$1evWrRkTooaHtS4I7ihEH",
+        "target" : "Cpp-eSDWFOydUile7Uyio$$HVXQZrKocwOdLjHd_W3Xy",
+        "targetPort" : "wC77djn9gh6WAX6ZMBqon$$bk0k2cLD7eE9Lna72vLYu"
+      }, {
+        "id" : "2msAtfTPSYYQLyk4kwYDv",
+        "source" : "Cpp-eSDWFOydUile7Uyio$$HVXQZrKocwOdLjHd_W3Xy",
+        "sourcePort" : "xLJkxvbQqP8DuRgGsUUiP$$beEr9oUJSVnuPjF0cyaX4",
+        "target" : "YsPCyfeLBsN_-gEeTFtDN$$rgpekk0cRrGDCCJUEGXuG",
+        "targetPort" : "JdfRezOVKXOTJ1TWGxw_K$$vzS8QXIWENsiqBCqUzoWL"
+      }, {
+        "id" : "KWgRyzOutXRCtzMNR-yVs",
+        "source" : "Cpp-eSDWFOydUile7Uyio$$HVXQZrKocwOdLjHd_W3Xy",
+        "sourcePort" : "xLJkxvbQqP8DuRgGsUUiP$$beEr9oUJSVnuPjF0cyaX4",
+        "target" : "YsPCyfeLBsN_-gEeTFtDN$$rgpekk0cRrGDCCJUEGXuG",
+        "targetPort" : "So1QxkngFkmkTkzvQYzWT$$BXR-qG0sEcG-aQ7OpjpOr"
+      }, {
+        "id" : "uJDlHF49RMFWrFDrSZAHM",
+        "source" : "PgUYSxgP6yAYJcJ3ppHfX$$ZML3vEJgQzvCX7Q5lZfN-",
+        "sourcePort" : "HxaQX0nF88aUd633ycAPm$$rdEKtj-QoPeqimNSJaQPi",
+        "target" : "40x82-YyIIUk7pIhht2LX$$8yJkJueK979QEPVDHFvgb",
+        "targetPort" : "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk"
+      }, {
+        "id" : "0yWY6Svr_EiePIz2cVGiS",
+        "source" : "YsPCyfeLBsN_-gEeTFtDN$$rgpekk0cRrGDCCJUEGXuG",
+        "sourcePort" : "RD_fpo-eYIkVlGHMOhi40$$lgO2u-aJ0Si_qNV_KSzNt",
+        "target" : "PgUYSxgP6yAYJcJ3ppHfX$$ZML3vEJgQzvCX7Q5lZfN-",
+        "targetPort" : "2iACtgSd6Ns4RyWGyhlNG$$fiOqY1MFUFK8TN9YEq0Od"
+      }, {
+        "id" : "xLDu9ahrGxONgNn2jgwmB",
+        "source" : "40x82-YyIIUk7pIhht2LX$$8yJkJueK979QEPVDHFvgb",
+        "sourcePort" : "JSwGY5d6RoYVcwEbme7Hq$$Xr3S2P23gjlnFDsAXufsV",
+        "target" : "7dSYHS4ccxtaDQIA58yGB$$x1JPMGf3yMJMuUY-OtwTj",
+        "targetPort" : "9blV28DPIyEV4QJ9pCT1G$$pNz7iIy_UW53K9vzlrMkf"
+      }, {
+        "id" : "HVD5o9WSxEXDQLn18x4cq",
+        "source" : "6ITI0NEHkk-C0PzFrl3JB$$p_Z7wcOOGKMzNW64WS5Yg",
+        "sourcePort" : "djg3J1fGmwlsK4U4kIhZ1$$0ThxktF-pSMtu_4DMAcfd",
+        "target" : "NhC1SRdJyLJ_imHbm-SGU$$URpoDRge_ARFYdNdru4wC",
+        "targetPort" : "du_qYOwJdHLxhZ4aP3f3P$$caDxfVvyVzTxHugGruPJ1"
+      }, {
+        "id" : "YOWOeXp1O9LnyrscpVsa-",
+        "source" : "NhC1SRdJyLJ_imHbm-SGU$$URpoDRge_ARFYdNdru4wC",
+        "sourcePort" : "cix9b7hiz5GT6SHK1a2ey$$S8rzxLcxjI0nNLR_s8oJR",
+        "target" : "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM",
+        "targetPort" : "SkBS6gh6emtD6h9FvJzaL$$KIWtNwgsJB3jtOzllkBBt"
+      }, {
+        "id" : "D_5zqelJ-5NSuwj0yPG-W",
+        "source" : "PgUYSxgP6yAYJcJ3ppHfX$$ZML3vEJgQzvCX7Q5lZfN-",
+        "sourcePort" : "PwWx57iOUAbAqGLDKsfGQ$$DrNF_-EqeazJxII0yBfLZ",
+        "target" : "Q732qOBLhcrT2x0MvHU_E$$AEToO4N74P5-TOd_6oR04",
+        "targetPort" : "0uCfiFMPscHuPFLOtLWun$$Jhfnz8pifbl-XhZtgkVlF"
+      }, {
+        "id" : "GEP7OI9YB9EEDstQdE3EI",
+        "source" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "sourcePort" : "JmDi7cY_IrxrHpuH7A2GC$$oWKDAUQ81iYkIKJlb2D3k",
+        "target" : "hUP1i867OpQpUfEFUJCQy$$rvaoeoJj8DewfxhtkNNQJ",
+        "targetPort" : "7TJZjmxJAA4hdMJ28QbFl$$1lQIaAhnNhW5JcHBb-xq6"
+      }, {
+        "id" : "oVIb6BxEquAzt9CN5H87E",
+        "source" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "sourcePort" : "psUsGXiIH04Qe01Hhlsii$$xnMVyLkjosTaaa0eimeSm",
+        "target" : "6ITI0NEHkk-C0PzFrl3JB$$p_Z7wcOOGKMzNW64WS5Yg",
+        "targetPort" : "KD5EqNyuHG8ykC0ZYwa1q$$qn0KJHic6QaQc8rZOWjan"
+      }, {
+        "id" : "TcrSNpclFNVOODHMcWn4Z",
+        "source" : "7dSYHS4ccxtaDQIA58yGB$$x1JPMGf3yMJMuUY-OtwTj",
+        "sourcePort" : "1TNe7-gys_ySzJscz90bs$$1W_NSsAGQ3sQzB3HSPyUT",
+        "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "targetPort" : "ZQDoycQsuVJ2jJiD25MVg$$MvAoCBmhBl3Ifisjr12gz"
+      }, {
+        "id" : "DrSAOy4u2C2UFO4rjuv7S",
+        "source" : "Q732qOBLhcrT2x0MvHU_E$$AEToO4N74P5-TOd_6oR04",
+        "sourcePort" : "Nljh_h-Q4z_oo_ltnGgSe$$edoA0-3hDqz_Mb6MIj27r",
+        "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "targetPort" : "hxJJCXjo1BfX7RM97eSli$$6KH5MX0UZqC9AVf0jnY7l"
+      }, {
+        "id" : "AQKbWq9RGOXGyNhDBVOst",
+        "source" : "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM",
+        "sourcePort" : "PUBCn_KCQqQQvrxCDqUkl$$c57BD8n42DN2nFwO3TmJN",
+        "target" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "targetPort" : "juDtv8EkA83K275JteybN$$5hBdvSu93SApl8quCg7DC"
+      }, {
+        "id" : "7Q3r7x29yQNgCbsEDcfMM",
+        "source" : "5ok5JsQGD0Jjxj7ors42r$$yZCtQDgjk-otsFyhSegPz",
+        "sourcePort" : "0onyz6Y5pzKgZQ7B0KT9A$$ewwSzvpDatq_c7TBhFcC1",
+        "target" : "rTy83DSuASMaEv6ATwCpc$$dttyOhfR4nO_qSOMdCqCz",
+        "targetPort" : "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL"
+      } ],
+      "processes" : {
+        "7dSYHS4ccxtaDQIA58yGB$$x1JPMGf3yMJMuUY-OtwTj" : {
+          "id" : "7dSYHS4ccxtaDQIA58yGB$$x1JPMGf3yMJMuUY-OtwTj",
+          "component" : "FlattenSchema",
+          "metadata" : {
+            "label" : "FlattenSchema_1_1",
+            "slug" : "FlattenSchema_1_1",
+            "x" : 1744,
+            "y" : 358,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "9blV28DPIyEV4QJ9pCT1G$$pNz7iIy_UW53K9vzlrMkf",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "1TNe7-gys_ySzJscz90bs$$1W_NSsAGQ3sQzB3HSPyUT",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "explodedColsNewName" : [ {
+              "originalColToExplode" : "c_array--long",
+              "updatedColToExplode" : "c_array--long",
+              "colNameAfterExplode" : "c_array--long"
+            }, {
+              "originalColToExplode" : "c_array -- decimal",
+              "updatedColToExplode" : "c_array -- decimal",
+              "colNameAfterExplode" : "c_array -- decimal"
+            }, {
+              "originalColToExplode" : "c_array-int  _ int",
+              "updatedColToExplode" : "c_array-int  _ int",
+              "colNameAfterExplode" : "c_array-int  _ int"
+            }, {
+              "originalColToExplode" : "c_struct -- _  .c_array_int - of a struct ",
+              "updatedColToExplode" : "c_struct -- _  .c_array_int - of a struct ",
+              "colNameAfterExplode" : "c_struct -- _  -c_array_int - of a struct "
+            } ],
+            "fsExpressions" : [ {
+              "exploded" : "✓",
+              "flattenedExpression" : "c_array--long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array--long`"
+              },
+              "targetTokens" : [ "c_array--long" ],
+              "target" : "c_array--long"
+            }, {
+              "exploded" : "✓",
+              "flattenedExpression" : "c_array -- decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- decimal`"
+              },
+              "targetTokens" : [ "c_array -- decimal" ],
+              "target" : "c_array -- decimal"
+            }, {
+              "exploded" : "✓",
+              "flattenedExpression" : "c_struct -- _  .c_array_int - of a struct ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `.`c_array_int - of a struct `"
+              },
+              "targetTokens" : [ "c_struct -- _  ", "c_array_int - of a struct " ],
+              "target" : "c_struct -- _  -c_array_int - of a struct "
+            }, {
+              "exploded" : "",
+              "flattenedExpression" : "c_struct -- _  .c_timestamp - of a struct-",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `.`c_timestamp - of a struct-`"
+              },
+              "targetTokens" : [ "c_struct -- _  ", "c_timestamp - of a struct-" ],
+              "target" : "c_struct -- _  -c_timestamp - of a struct-"
+            }, {
+              "exploded" : "",
+              "flattenedExpression" : "c_struct -- _  .c_string - of a struct -- _",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `.`c_string - of a struct -- _`"
+              },
+              "targetTokens" : [ "c_struct -- _  ", "c_string - of a struct -- _" ],
+              "target" : "c_struct -- _  -c_string - of a struct -- _"
+            }, {
+              "exploded" : "✓",
+              "flattenedExpression" : "c_array-int  _ int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-int  _ int`"
+              },
+              "targetTokens" : [ "c_array-int  _ int" ],
+              "target" : "c_array-int  _ int"
+            } ],
+            "columnsSelector" : [ "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_array--long", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_array -- decimal", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_struct -- _  ", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_struct -- _  .c_array_int - of a struct ", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_struct -- _  .c_timestamp - of a struct-", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_struct -- _  .c_string - of a struct -- _", "5S6uXAvWRQ7dfuGA9mMYn$$jvuMAZDTIjOykNrqSriq8##c_array-int  _ int" ],
+            "explodeColumns" : [ "c_array--long", "c_array -- decimal", "c_struct -- _  .c_array_int - of a struct ", "c_array-int  _ int" ],
+            "delimiter" : "-"
+          }
+        },
+        "2364u3XyEfqkcOFGPdruQ$$EW7rZeQgZzUUvT2-nuAEC" : {
+          "id" : "2364u3XyEfqkcOFGPdruQ$$EW7rZeQgZzUUvT2-nuAEC",
+          "component" : "SetOperation",
+          "metadata" : {
+            "label" : "SetOperation_1_1",
+            "slug" : "SetOperation_1_1",
+            "x" : 1012,
+            "y" : 478,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "-axKeXpWxFMz9TEheBjlQ$$FNOZSMgJzHLx9kgBQdH3Z",
+              "slug" : "in0",
+              "isStreaming" : false
+            }, {
+              "id" : "BKtf6NqTqxsrFVFw4mmPv$$TM5pz33CevEDdTvVVt_tt",
+              "slug" : "in1",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "Vd1zEA7MfS5nw7LTlqhDD$$1evWrRkTooaHtS4I7ihEH",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "operationType" : "unionAll"
+          }
+        },
+        "Cpp-eSDWFOydUile7Uyio$$HVXQZrKocwOdLjHd_W3Xy" : {
+          "id" : "Cpp-eSDWFOydUile7Uyio$$HVXQZrKocwOdLjHd_W3Xy",
+          "component" : "SchemaTransform",
+          "metadata" : {
+            "label" : "SchemaTransform_1_1",
+            "slug" : "SchemaTransform_1_1",
+            "x" : 1184,
+            "y" : 478,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "wC77djn9gh6WAX6ZMBqon$$bk0k2cLD7eE9Lna72vLYu",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "xLJkxvbQqP8DuRgGsUUiP$$beEr9oUJSVnuPjF0cyaX4",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ ],
+            "transformations" : [ ]
+          }
+        },
+        "thGcHosI_1BgWDJrHjFoV$$8oixU_uuOK_-9cEZ1A_Dr" : {
+          "id" : "thGcHosI_1BgWDJrHjFoV$$8oixU_uuOK_-9cEZ1A_Dr",
+          "component" : "WindowFunction",
+          "metadata" : {
+            "label" : "WindowFunction_1_1",
+            "slug" : "WindowFunction_1_1",
+            "x" : 828,
+            "y" : 463,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "uOaGFGF7VHHHjePAdbzbk$$CKcdgJxoxZ9bUKLD21jFx",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "gtWt2VSgvUB0J7hcxUL0n$$1G8bqF_pqkuOhr3YeV7UF",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "userSpecifiedEnd" : null,
+            "expressionColumns" : [ {
+              "_row_id" : null,
+              "target" : "c -  boolean _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "row_number()"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "row_number()"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c-string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "row_number()"
+              },
+              "description" : ""
+            } ],
+            "frameType" : "row",
+            "partitionColumns" : [ {
+              "format" : "sql",
+              "expression" : "`c- short`"
+            }, {
+              "format" : "sql",
+              "expression" : "`c  - int`"
+            } ],
+            "activeTab" : "windowUse",
+            "columnsSelector" : [ "efnsg6oA2Pj99oiTf1261$$r1dYSsQ-73A8sANy7Soq6##c- short", "efnsg6oA2Pj99oiTf1261$$r1dYSsQ-73A8sANy7Soq6##c  - int", "efnsg6oA2Pj99oiTf1261$$r1dYSsQ-73A8sANy7Soq6##c_decimal  -  ", "efnsg6oA2Pj99oiTf1261$$r1dYSsQ-73A8sANy7Soq6##c_float-__  " ],
+            "specifyFrame" : false,
+            "frameStart" : null,
+            "orderColumns" : [ {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_decimal  -  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_float-__  `"
+              },
+              "sortType" : "asc"
+            } ],
+            "frameEnd" : null,
+            "userSpecifiedStart" : null
+          }
+        },
+        "PgUYSxgP6yAYJcJ3ppHfX$$ZML3vEJgQzvCX7Q5lZfN-" : {
+          "id" : "PgUYSxgP6yAYJcJ3ppHfX$$ZML3vEJgQzvCX7Q5lZfN-",
+          "component" : "RowDistributor",
+          "metadata" : {
+            "label" : "RowDistributor_1_1",
+            "slug" : "RowDistributor_1_1",
+            "x" : 1446,
+            "y" : 440,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "2iACtgSd6Ns4RyWGyhlNG$$fiOqY1MFUFK8TN9YEq0Od",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "HxaQX0nF88aUd633ycAPm$$rdEKtj-QoPeqimNSJaQPi",
+              "slug" : "out0",
+              "isStreaming" : false
+            }, {
+              "id" : "PwWx57iOUAbAqGLDKsfGQ$$DrNF_-EqeazJxII0yBfLZ",
+              "slug" : "out1",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "outports" : [ {
+              "path" : "out0",
+              "id" : "out0",
+              "model" : {
+                "format" : "sql",
+                "expression" : "`c- short` > -10"
+              }
+            }, {
+              "path" : "out1",
+              "id" : "out1",
+              "model" : {
+                "format" : "sql",
+                "expression" : "`c  - int` > -100"
+              }
+            } ]
+          }
+        },
+        "6ITI0NEHkk-C0PzFrl3JB$$p_Z7wcOOGKMzNW64WS5Yg" : {
+          "id" : "6ITI0NEHkk-C0PzFrl3JB$$p_Z7wcOOGKMzNW64WS5Yg",
+          "component" : "Deduplicate",
+          "metadata" : {
+            "label" : "Deduplicate_1_1",
+            "slug" : "Deduplicate_1_1",
+            "x" : 315,
+            "y" : 632,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "KD5EqNyuHG8ykC0ZYwa1q$$qn0KJHic6QaQc8rZOWjan",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "djg3J1fGmwlsK4U4kIhZ1$$0ThxktF-pSMtu_4DMAcfd",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "dedupColumns" : [ {
+              "colName" : "c -  boolean _  "
+            }, {
+              "colName" : "c-string"
+            } ],
+            "dedupType" : "any",
+            "columnsSelector" : [ ],
+            "orders" : [ ],
+            "useOrderBy" : false
+          }
+        },
+        "rTy83DSuASMaEv6ATwCpc$$dttyOhfR4nO_qSOMdCqCz" : {
+          "id" : "rTy83DSuASMaEv6ATwCpc$$dttyOhfR4nO_qSOMdCqCz",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "Reformat_7",
+            "slug" : "Reformat_7",
+            "x" : 146,
+            "y" : 730.9000000000001,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "5LiZljahU3bU_Rym0A-1p$$lIDKZ9FK_jl1Oj5RPFlym",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c- short", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c  - int", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##- c long", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_decimal  -  ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_float-__  ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c -  boolean _  ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_double", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c-string", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_date-for today", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_timestamp  __ for--today", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array-int  _ int", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array-string  _ string", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array--long", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array-- boolean ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##-- c_array_timestamp -- ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array -- float", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_array -- decimal", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##c_struct -- _  ", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_short", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_int", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_long", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_decimal", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_float", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_boolean", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_double", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_string", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_date", "IgfY3DA-P4bUunWw8bPvU$$o8RqJ4VZDrb5GPpcl-YPL##p_timestamp" ],
+            "expressions" : [ {
+              "target" : "c- short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c- short`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c  - int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c  - int`"
+              },
+              "description" : ""
+            }, {
+              "target" : "- c long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`- c long`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_decimal  -  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_decimal  -  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_float-__  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_float-__  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c -  boolean _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c -  boolean _  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "c_double"
+              },
+              "description" : ""
+            }, {
+              "target" : "c-string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c-string`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_date-for today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_date-for today`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_timestamp  __ for--today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_timestamp  __ for--today`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-int  _ int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-int  _ int`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-string  _ string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-string  _ string`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array--long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array--long`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-- boolean ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-- boolean `"
+              },
+              "description" : ""
+            }, {
+              "target" : "-- c_array_timestamp -- ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`-- c_array_timestamp -- `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array -- float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- float`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array -- decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- decimal`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_struct -- _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_short"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_int"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_long"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_decimal"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_float"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_boolean",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_boolean"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_double"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_string"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_date",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_date"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_timestamp",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_timestamp"
+              },
+              "description" : ""
+            } ]
+          }
+        },
+        "WwV8YcgqfDbTr1Qjw-_ub$$Dw-4lZfpoefk0R5ggK4qG" : {
+          "id" : "WwV8YcgqfDbTr1Qjw-_ub$$Dw-4lZfpoefk0R5ggK4qG",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "Reformat_1_1",
+            "slug" : "Reformat_1_1",
+            "x" : 604,
+            "y" : 305,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "hHK1gkxaT9W8dv5rdn3SV$$TG-kppVGzir0woO4QO0Qs",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "y-_P0LZWdJ6sodhEZaaQ6$$dPOnqY1Y97r_ei9Me6RL9",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##customer_id", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##first_name", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##last_name", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##phone", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##email", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##country_code", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##account_open_date", "hHK1gkxaT9W8dv5rdn3SV$$0ou8-Ktd15nln4T8oSqgG##account_flags" ],
+            "expressions" : [ {
+              "target" : "customer_id",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "customer_id"
+              },
+              "description" : ""
+            }, {
+              "target" : "first_name",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first_name"
+              },
+              "description" : ""
+            }, {
+              "target" : "last_name",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "last_name"
+              },
+              "description" : ""
+            }, {
+              "target" : "phone",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "phone"
+              },
+              "description" : ""
+            }, {
+              "target" : "email",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "email"
+              },
+              "description" : ""
+            }, {
+              "target" : "country_code",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "country_code"
+              },
+              "description" : ""
+            }, {
+              "target" : "account_open_date",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "account_open_date"
+              },
+              "description" : ""
+            }, {
+              "target" : "account_flags",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "account_flags"
+              },
+              "description" : ""
+            }, {
+              "target" : "lookup1",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "LookupTest(customer_id,first_name)['phone']"
+              },
+              "description" : ""
+            } ]
+          }
+        },
+        "YsPCyfeLBsN_-gEeTFtDN$$rgpekk0cRrGDCCJUEGXuG" : {
+          "id" : "YsPCyfeLBsN_-gEeTFtDN$$rgpekk0cRrGDCCJUEGXuG",
+          "component" : "Join",
+          "metadata" : {
+            "label" : "Join_1_1",
+            "slug" : "Join_1_1",
+            "x" : 1314,
+            "y" : 437,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "JdfRezOVKXOTJ1TWGxw_K$$vzS8QXIWENsiqBCqUzoWL",
+              "slug" : "in0",
+              "isStreaming" : false
+            }, {
+              "id" : "So1QxkngFkmkTkzvQYzWT$$BXR-qG0sEcG-aQ7OpjpOr",
+              "slug" : "in1",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "RD_fpo-eYIkVlGHMOhi40$$lgO2u-aJ0Si_qNV_KSzNt",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "conditions" : [ {
+              "alias" : "in1",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c  - int`=in1.`c  - int`"
+              },
+              "joinType" : "inner"
+            } ],
+            "expressions" : [ {
+              "_row_id" : null,
+              "target" : "c- short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c- short`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c  - int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c  - int`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "- c long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`- c long`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_decimal  -  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_decimal  -  `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_float-__  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_float-__  `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c -  boolean _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c -  boolean _  `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.c_double"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c-string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c-string`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_date-for today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_date-for today`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_timestamp  __ for--today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_timestamp  __ for--today`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-int  _ int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array-int  _ int`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-string  _ string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array-string  _ string`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array--long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array--long`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-- boolean ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array-- boolean `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "-- c_array_timestamp -- ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`-- c_array_timestamp -- `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array -- float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array -- float`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array -- decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_array -- decimal`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_struct -- _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.`c_struct -- _  `"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_short"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_int"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_long"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_decimal"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_float"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_boolean",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_boolean"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_double"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_string"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_date",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_date"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_timestamp",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "in0.p_timestamp"
+              },
+              "description" : ""
+            } ],
+            "activeTab" : "expressions",
+            "columnsSelector" : [ "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c  - int", "VqxmTIBGc3W_uVkp2ZKiI$$LlzNPaRcRmY4kE55k7lpK##c  - int", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c- short", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c  - int", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##- c long", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_decimal  -  ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_float-__  ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c -  boolean _  ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_double", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c-string", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_date-for today", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_timestamp  __ for--today", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array-int  _ int", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array-string  _ string", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array--long", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array-- boolean ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##-- c_array_timestamp -- ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array -- float", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_array -- decimal", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##c_struct -- _  ", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_short", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_int", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_long", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_decimal", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_float", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_boolean", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_double", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_string", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_date", "3TItDiFFV7Por6ApmAxId$$WBMELrn1oUtmU91c7v3Gp##p_timestamp" ],
+            "whereClause" : null,
+            "headAlias" : "in0"
+          }
+        },
+        "NhC1SRdJyLJ_imHbm-SGU$$URpoDRge_ARFYdNdru4wC" : {
+          "id" : "NhC1SRdJyLJ_imHbm-SGU$$URpoDRge_ARFYdNdru4wC",
+          "component" : "Script",
+          "metadata" : {
+            "label" : "Script_1_1",
+            "slug" : "Script_1_1",
+            "x" : 558,
+            "y" : 652,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "du_qYOwJdHLxhZ4aP3f3P$$caDxfVvyVzTxHugGruPJ1",
+              "slug" : "in0",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "cix9b7hiz5GT6SHK1a2ey$$S8rzxLcxjI0nNLR_s8oJR",
+              "slug" : "out0",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "script" : "var out0=in0",
+            "scriptMethodHeader" : "def apply(spark: SparkSession, in0: DataFrame): DataFrame = {",
+            "scriptMethodFooter" : "    out0\n}"
+          }
+        },
+        "hUP1i867OpQpUfEFUJCQy$$rvaoeoJj8DewfxhtkNNQJ" : {
+          "id" : "hUP1i867OpQpUfEFUJCQy$$rvaoeoJj8DewfxhtkNNQJ",
+          "component" : "Reformat",
+          "metadata" : {
+            "label" : "Reformat_2_1",
+            "slug" : "Reformat_2_1",
+            "x" : 259,
+            "y" : 449,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "7TJZjmxJAA4hdMJ28QbFl$$1lQIaAhnNhW5JcHBb-xq6",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "IOGnwjIuO1YjIb-sLJyha$$HTF8HqpP8_naw8yJ3Ttq2",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c- short", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c  - int", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##- c long", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_decimal  -  ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_float-__  ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c -  boolean _  ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_double", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c-string", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_date-for today", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_timestamp  __ for--today", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array-int  _ int", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array-string  _ string", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array--long", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array-- boolean ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##-- c_array_timestamp -- ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array -- float", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_array -- decimal", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##c_struct -- _  ", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_short", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_int", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_long", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_decimal", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_float", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_boolean", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_double", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_string", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_date", "PzASxtCD3YAQjLaGtDDdI$$5Npp-j72BuXRJZmcMvixn##p_timestamp" ],
+            "expressions" : [ {
+              "target" : "c- short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c- short`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c  - int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c  - int`"
+              },
+              "description" : ""
+            }, {
+              "target" : "- c long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`- c long`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_decimal  -  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_decimal  -  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_float-__  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_float-__  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c -  boolean _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c -  boolean _  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "c_double"
+              },
+              "description" : ""
+            }, {
+              "target" : "c-string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c-string`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_date-for today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_date-for today`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_timestamp  __ for--today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_timestamp  __ for--today`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-int  _ int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-int  _ int`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-string  _ string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-string  _ string`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array--long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array--long`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array-- boolean ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-- boolean `"
+              },
+              "description" : ""
+            }, {
+              "target" : "-- c_array_timestamp -- ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`-- c_array_timestamp -- `"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array -- float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- float`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_array -- decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- decimal`"
+              },
+              "description" : ""
+            }, {
+              "target" : "c_struct -- _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_short"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_int"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_long"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_decimal"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_float"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_boolean",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_boolean"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_double"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_string"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_date",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_date"
+              },
+              "description" : ""
+            }, {
+              "target" : "p_timestamp",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_timestamp"
+              },
+              "description" : ""
+            } ]
+          }
+        },
+        "l-CYWkwAxWLBq7BtZXNmc$$CzZ_nMlPk_N3h120ksLg2" : {
+          "id" : "l-CYWkwAxWLBq7BtZXNmc$$CzZ_nMlPk_N3h120ksLg2",
+          "component" : "OrderBy",
+          "metadata" : {
+            "label" : "OrderBy_1_1",
+            "slug" : "OrderBy_1_1",
+            "x" : 549,
+            "y" : 453,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "l2Gb1pRtvNR2tBrj1WrSs$$lkjvdKJqWbw6SQYlNxdXG",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "Ddaz4jJQzSi44fZRicVSW$$A-dLHNaaqmXCBIkQv2ILR",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c- short", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c  - int", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##- c long", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c_decimal  -  ", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c_float-__  ", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c -  boolean _  ", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c_double", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c-string", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c_date-for today", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##c_timestamp  __ for--today", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_int", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_long", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_decimal", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_float", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_boolean", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_double", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_string", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_date", "nx1-5JKsQ4pPG3d-QlgZ1$$AbXzEMmZm_I1LesEzCj8W##p_timestamp" ],
+            "orders" : [ {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c- short`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c  - int`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`- c long`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_decimal  -  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_float-__  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c -  boolean _  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "c_double"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c-string`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_date-for today`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_timestamp  __ for--today`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_int"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_long"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_decimal"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_float"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_boolean"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_double"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_string"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_date"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_timestamp"
+              },
+              "sortType" : "asc"
+            } ]
+          }
+        },
+        "lgmqnTtMR3qcVjlH2Ep35$$JFzi8SGtBpkzG93fbSUBl" : {
+          "id" : "lgmqnTtMR3qcVjlH2Ep35$$JFzi8SGtBpkzG93fbSUBl",
+          "component" : "Filter",
+          "metadata" : {
+            "label" : "Filter_1_1",
+            "slug" : "Filter_1_1",
+            "x" : 381.99999999999994,
+            "y" : 449,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "aQ3I6Xlb7XSyUur0AD9Uf$$gTNg71wzHZSAW-quEqWpT",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "UULbpwesGwistLf0QlHPk$$xokbT7m8fnwwKYBWPVHA1",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "jdOWLZNbX0SEYgWB0bQqz$$SmBkhQBGlfiy0UJbw9b-a##c  - int" ],
+            "condition" : {
+              "format" : "sql",
+              "expression" : "`c  - int` > -100"
+            }
+          }
+        },
+        "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM" : {
+          "id" : "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM",
+          "component" : "Subgraph",
+          "metadata" : {
+            "label" : "recursive_1",
+            "slug" : "recursive_1",
+            "x" : 1546,
+            "y" : 648,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "SkBS6gh6emtD6h9FvJzaL$$KIWtNwgsJB3jtOzllkBBt",
+              "slug" : "in0",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "PUBCn_KCQqQQvrxCDqUkl$$c57BD8n42DN2nFwO3TmJN",
+              "slug" : "out0",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : { },
+          "connections" : [ {
+            "id" : "gfPpXPyWse7FpmLAhki1M",
+            "source" : "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM",
+            "sourcePort" : "SkBS6gh6emtD6h9FvJzaL$$KIWtNwgsJB3jtOzllkBBt",
+            "target" : "jiGNL3C_2hXv9zvRilmeP$$ESSC4eRR6Ot-f_rIcw_pP",
+            "targetPort" : "V0cqbqmq1iekEFtvXVoCX$$XD3uZcliw6Su0Xk9aMavn"
+          }, {
+            "id" : "U4hAb7XWoq2F0SOE8K0VU",
+            "source" : "jiGNL3C_2hXv9zvRilmeP$$ESSC4eRR6Ot-f_rIcw_pP",
+            "sourcePort" : "k3m-wgXN7AdI1qeeM3boA$$XARlawNbqKAnTSVK-m1Ub",
+            "target" : "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI",
+            "targetPort" : "idh2XO8Cn0ZcDDW5G97sa$$VCInd9yP22rzf5Q_FYsVh"
+          }, {
+            "id" : "LY5jdConvYTUVIdURBWCd",
+            "source" : "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI",
+            "sourcePort" : "HsBcfV2pniIyNuOSO_MOe$$FBGh-pU5XP23WHqJ8kyqk",
+            "target" : "Wo4ZKekU2YfP2UPSK7e5I$$Tk_yUmH9R3aZ8D6u9nFvM",
+            "targetPort" : "PUBCn_KCQqQQvrxCDqUkl$$c57BD8n42DN2nFwO3TmJN"
+          } ],
+          "processes" : {
+            "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI" : {
+              "id" : "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI",
+              "component" : "Subgraph",
+              "metadata" : {
+                "label" : "Subgraph_2_1",
+                "slug" : "Subgraph_2_1",
+                "x" : 404,
+                "y" : 77.40000000000003,
+                "phase" : 0,
+                "cache" : false,
+                "detailedStats" : false,
+                "isImported" : false
+              },
+              "ports" : {
+                "inputs" : [ {
+                  "id" : "idh2XO8Cn0ZcDDW5G97sa$$VCInd9yP22rzf5Q_FYsVh",
+                  "slug" : "in0",
+                  "isStreaming" : false
+                } ],
+                "outputs" : [ {
+                  "id" : "HsBcfV2pniIyNuOSO_MOe$$FBGh-pU5XP23WHqJ8kyqk",
+                  "slug" : "out0",
+                  "isStreaming" : false
+                } ],
+                "selectedInputFields" : [ ],
+                "isCustomOutputSchema" : false
+              },
+              "properties" : { },
+              "connections" : [ {
+                "id" : "9zBgD62CeQ-35WCg9bJ7O",
+                "source" : "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI",
+                "sourcePort" : "idh2XO8Cn0ZcDDW5G97sa$$VCInd9yP22rzf5Q_FYsVh",
+                "target" : "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A",
+                "targetPort" : "cWek2eYndfDXGt0lcJ957$$3LPlno4nPBXRBx7IPGGhs"
+              }, {
+                "id" : "W5VkyQ1UEUCOXai69_N2k",
+                "source" : "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A",
+                "sourcePort" : "bVKFXDyZn2AMJEtRrRut7$$SZpOIJqIieX1Ya3AGcM0z",
+                "target" : "-ppXcjnTV-2HsQtnE7AqM$$Ql2IK78tFO6fChAdTnPrw",
+                "targetPort" : "F6qp8PuP5iHhXZ3a6QUu5$$O_xXNwZIZns5-EobFYDFU"
+              }, {
+                "id" : "kklmPeh7FzZiTKzCQgHJ7",
+                "source" : "-ppXcjnTV-2HsQtnE7AqM$$Ql2IK78tFO6fChAdTnPrw",
+                "sourcePort" : "fm5CFh16l0ffbWK_W8ULz$$4YJ6-joqsao9saXcRaj1x",
+                "target" : "FOfnwOUQZoQntSFu89mgS$$1AmWpCxcP15OceB8ynhZI",
+                "targetPort" : "HsBcfV2pniIyNuOSO_MOe$$FBGh-pU5XP23WHqJ8kyqk"
+              } ],
+              "processes" : {
+                "-ppXcjnTV-2HsQtnE7AqM$$Ql2IK78tFO6fChAdTnPrw" : {
+                  "id" : "-ppXcjnTV-2HsQtnE7AqM$$Ql2IK78tFO6fChAdTnPrw",
+                  "component" : "Reformat",
+                  "metadata" : {
+                    "label" : "Reformat_4_1",
+                    "slug" : "Reformat_4_1",
+                    "x" : 380,
+                    "y" : 260,
+                    "phase" : 0,
+                    "cache" : false,
+                    "detailedStats" : false,
+                    "isImported" : false
+                  },
+                  "ports" : {
+                    "inputs" : [ {
+                      "id" : "F6qp8PuP5iHhXZ3a6QUu5$$O_xXNwZIZns5-EobFYDFU",
+                      "slug" : "in",
+                      "isStreaming" : false
+                    } ],
+                    "outputs" : [ {
+                      "id" : "fm5CFh16l0ffbWK_W8ULz$$4YJ6-joqsao9saXcRaj1x",
+                      "slug" : "out",
+                      "isStreaming" : false
+                    } ],
+                    "selectedInputFields" : [ ],
+                    "isCustomOutputSchema" : false
+                  },
+                  "properties" : {
+                    "columnsSelector" : [ "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c- short", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c  - int", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##- c long", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_decimal  -  ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_float-__  ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c -  boolean _  ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_double", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c-string", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_date-for today", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_timestamp  __ for--today", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array-int  _ int", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array-string  _ string", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array--long", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array-- boolean ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##-- c_array_timestamp -- ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array -- float", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_array -- decimal", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##c_struct -- _  ", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_short", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_int", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_long", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_decimal", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_float", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_boolean", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_double", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_string", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_date", "jATJsX8MQmiLDQbFFByen$$gpvGw_we4uk3piTN7lJAJ##p_timestamp" ],
+                    "expressions" : [ {
+                      "target" : "c- short",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c- short`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c  - int",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c  - int`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "- c long",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`- c long`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_decimal  -  ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_decimal  -  `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_float-__  ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_float-__  `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c -  boolean _  ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c -  boolean _  `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_double",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "c_double"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c-string",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c-string`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_date-for today",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_date-for today`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_timestamp  __ for--today",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_timestamp  __ for--today`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array-int  _ int",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array-int  _ int`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array-string  _ string",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array-string  _ string`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array--long",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array--long`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array-- boolean ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array-- boolean `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "-- c_array_timestamp -- ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`-- c_array_timestamp -- `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array -- float",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array -- float`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_array -- decimal",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_array -- decimal`"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "c_struct -- _  ",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "`c_struct -- _  `"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_short",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_short"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_int",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_int"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_long",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_long"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_decimal",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_decimal"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_float",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_float"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_boolean",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_boolean"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_double",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_double"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_string",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_string"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_date",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_date"
+                      },
+                      "description" : ""
+                    }, {
+                      "target" : "p_timestamp",
+                      "expression" : {
+                        "format" : "sql",
+                        "expression" : "p_timestamp"
+                      },
+                      "description" : ""
+                    } ]
+                  }
+                },
+                "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A" : {
+                  "id" : "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A",
+                  "component" : "Subgraph",
+                  "metadata" : {
+                    "label" : "Subgraph_3_1",
+                    "slug" : "Subgraph_3_1",
+                    "x" : 240,
+                    "y" : 260,
+                    "phase" : 0,
+                    "cache" : false,
+                    "detailedStats" : false,
+                    "isImported" : false
+                  },
+                  "ports" : {
+                    "inputs" : [ {
+                      "id" : "cWek2eYndfDXGt0lcJ957$$3LPlno4nPBXRBx7IPGGhs",
+                      "slug" : "in0",
+                      "isStreaming" : false
+                    } ],
+                    "outputs" : [ {
+                      "id" : "bVKFXDyZn2AMJEtRrRut7$$SZpOIJqIieX1Ya3AGcM0z",
+                      "slug" : "out0",
+                      "isStreaming" : false
+                    } ],
+                    "selectedInputFields" : [ ],
+                    "isCustomOutputSchema" : false
+                  },
+                  "properties" : { },
+                  "connections" : [ {
+                    "id" : "HgkyuVz0QrPjtSsrTV9tu",
+                    "source" : "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A",
+                    "sourcePort" : "cWek2eYndfDXGt0lcJ957$$3LPlno4nPBXRBx7IPGGhs",
+                    "target" : "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo",
+                    "targetPort" : "XBNkPdHdVe_wK8EfZtp5J$$4tQKW8wnDxoDghHx9qzCa"
+                  }, {
+                    "id" : "Ue6QxNKwv_4WUxuSJ7ezb",
+                    "source" : "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo",
+                    "sourcePort" : "8RsR_gUFDqI4MYdYWjgEP$$zh53EqyXe7hp3SbZ_QKVS",
+                    "target" : "VB1OCxqmxaAw8IKh1SXDg$$CLwROsiIlf5guXmZun-Rm",
+                    "targetPort" : "xlTL7KkjVghYXx5Hbwqp8$$xU7MImT5KNO933xdvZFVq"
+                  }, {
+                    "id" : "bpRbuh-ErGyIJKQQaGhLT",
+                    "source" : "VB1OCxqmxaAw8IKh1SXDg$$CLwROsiIlf5guXmZun-Rm",
+                    "sourcePort" : "Bohxyl3etMpUL76SFhG2z$$wY-mIOyfVIW31O_NOQQ-C",
+                    "target" : "jaEv9L-4JtflbIVj80tdN$$6FxZl9biudML8K1GlR30A",
+                    "targetPort" : "bVKFXDyZn2AMJEtRrRut7$$SZpOIJqIieX1Ya3AGcM0z"
+                  } ],
+                  "processes" : {
+                    "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo" : {
+                      "id" : "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo",
+                      "component" : "Subgraph",
+                      "metadata" : {
+                        "label" : "Subgraph_4_1",
+                        "slug" : "Subgraph_4_1",
+                        "x" : 240,
+                        "y" : 260,
+                        "phase" : 0,
+                        "cache" : false,
+                        "detailedStats" : false,
+                        "isImported" : false
+                      },
+                      "ports" : {
+                        "inputs" : [ {
+                          "id" : "XBNkPdHdVe_wK8EfZtp5J$$4tQKW8wnDxoDghHx9qzCa",
+                          "slug" : "in0",
+                          "isStreaming" : false
+                        } ],
+                        "outputs" : [ {
+                          "id" : "8RsR_gUFDqI4MYdYWjgEP$$zh53EqyXe7hp3SbZ_QKVS",
+                          "slug" : "out0",
+                          "isStreaming" : false
+                        } ],
+                        "selectedInputFields" : [ ],
+                        "isCustomOutputSchema" : false
+                      },
+                      "properties" : { },
+                      "connections" : [ {
+                        "id" : "8Bk062gmHAvqA7DFT9ubH",
+                        "source" : "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo",
+                        "sourcePort" : "XBNkPdHdVe_wK8EfZtp5J$$4tQKW8wnDxoDghHx9qzCa",
+                        "target" : "GINAx9UxLYxYEacHmRR4N$$is7xJA6hq7KABBEg-vHZd",
+                        "targetPort" : "RVXS4d8rKXifwXQQgXfDx$$Ln7L7k3eAcglgklKSTyF9"
+                      }, {
+                        "id" : "H_x4gvI99YMV-Qv2WHezn",
+                        "source" : "GINAx9UxLYxYEacHmRR4N$$is7xJA6hq7KABBEg-vHZd",
+                        "sourcePort" : "napEovIX7XPJo3LvhF_EI$$Aa-SRRGOOyThscVWkEM2r",
+                        "target" : "O8luBCZZuZLFKgr9Wvj3j$$tyxo4ycNVCYexS4_waiPo",
+                        "targetPort" : "8RsR_gUFDqI4MYdYWjgEP$$zh53EqyXe7hp3SbZ_QKVS"
+                      } ],
+                      "processes" : {
+                        "GINAx9UxLYxYEacHmRR4N$$is7xJA6hq7KABBEg-vHZd" : {
+                          "id" : "GINAx9UxLYxYEacHmRR4N$$is7xJA6hq7KABBEg-vHZd",
+                          "component" : "Reformat",
+                          "metadata" : {
+                            "label" : "Reformat_6_1",
+                            "slug" : "Reformat_6_1",
+                            "x" : 240,
+                            "y" : 260,
+                            "phase" : 0,
+                            "cache" : false,
+                            "detailedStats" : false,
+                            "isImported" : false
+                          },
+                          "ports" : {
+                            "inputs" : [ {
+                              "id" : "RVXS4d8rKXifwXQQgXfDx$$Ln7L7k3eAcglgklKSTyF9",
+                              "slug" : "in",
+                              "isStreaming" : false
+                            } ],
+                            "outputs" : [ {
+                              "id" : "napEovIX7XPJo3LvhF_EI$$Aa-SRRGOOyThscVWkEM2r",
+                              "slug" : "out",
+                              "isStreaming" : false
+                            } ],
+                            "selectedInputFields" : [ ],
+                            "isCustomOutputSchema" : false
+                          },
+                          "properties" : {
+                            "columnsSelector" : [ "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c- short", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c  - int", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##- c long", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_decimal  -  ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_float-__  ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c -  boolean _  ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_double", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c-string", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_date-for today", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_timestamp  __ for--today", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array-int  _ int", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array-string  _ string", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array--long", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array-- boolean ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##-- c_array_timestamp -- ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array -- float", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_array -- decimal", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##c_struct -- _  ", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_short", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_int", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_long", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_decimal", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_float", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_boolean", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_double", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_string", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_date", "ynThlDBYp6vxrv9MazrAc$$7LICkON8BKmlE5t4JdBx8##p_timestamp" ],
+                            "expressions" : [ {
+                              "target" : "c- short",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c- short`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c  - int",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c  - int`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "- c long",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`- c long`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_decimal  -  ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_decimal  -  `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_float-__  ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_float-__  `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c -  boolean _  ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c -  boolean _  `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_double",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "c_double"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c-string",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c-string`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_date-for today",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_date-for today`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_timestamp  __ for--today",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_timestamp  __ for--today`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array-int  _ int",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array-int  _ int`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array-string  _ string",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array-string  _ string`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array--long",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array--long`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array-- boolean ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array-- boolean `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "-- c_array_timestamp -- ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`-- c_array_timestamp -- `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array -- float",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array -- float`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_array -- decimal",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_array -- decimal`"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "c_struct -- _  ",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "`c_struct -- _  `"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_short",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_short"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_int",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_int"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_long",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_long"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_decimal",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_decimal"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_float",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_float"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_boolean",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_boolean"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_double",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_double"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_string",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_string"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_date",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_date"
+                              },
+                              "description" : ""
+                            }, {
+                              "target" : "p_timestamp",
+                              "expression" : {
+                                "format" : "sql",
+                                "expression" : "p_timestamp"
+                              },
+                              "description" : ""
+                            } ]
+                          }
+                        }
+                      }
+                    },
+                    "VB1OCxqmxaAw8IKh1SXDg$$CLwROsiIlf5guXmZun-Rm" : {
+                      "id" : "VB1OCxqmxaAw8IKh1SXDg$$CLwROsiIlf5guXmZun-Rm",
+                      "component" : "Reformat",
+                      "metadata" : {
+                        "label" : "Reformat_5_1",
+                        "slug" : "Reformat_5_1",
+                        "x" : 380,
+                        "y" : 260,
+                        "phase" : 0,
+                        "cache" : false,
+                        "detailedStats" : false,
+                        "isImported" : false
+                      },
+                      "ports" : {
+                        "inputs" : [ {
+                          "id" : "xlTL7KkjVghYXx5Hbwqp8$$xU7MImT5KNO933xdvZFVq",
+                          "slug" : "in",
+                          "isStreaming" : false
+                        } ],
+                        "outputs" : [ {
+                          "id" : "Bohxyl3etMpUL76SFhG2z$$wY-mIOyfVIW31O_NOQQ-C",
+                          "slug" : "out",
+                          "isStreaming" : false
+                        } ],
+                        "selectedInputFields" : [ ],
+                        "isCustomOutputSchema" : false
+                      },
+                      "properties" : {
+                        "columnsSelector" : [ "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c- short", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c  - int", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##- c long", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_decimal  -  ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_float-__  ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c -  boolean _  ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_double", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c-string", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_date-for today", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_timestamp  __ for--today", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array-int  _ int", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array-string  _ string", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array--long", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array-- boolean ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##-- c_array_timestamp -- ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array -- float", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_array -- decimal", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##c_struct -- _  ", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_short", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_int", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_long", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_decimal", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_float", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_boolean", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_double", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_string", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_date", "nG5WoZBtICRTANwhkiEmG$$9cHgwqLwKUKIRLWZBilFI##p_timestamp" ],
+                        "expressions" : [ {
+                          "target" : "c- short",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c- short`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c  - int",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c  - int`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "- c long",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`- c long`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_decimal  -  ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_decimal  -  `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_float-__  ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_float-__  `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c -  boolean _  ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c -  boolean _  `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_double",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "c_double"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c-string",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c-string`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_date-for today",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_date-for today`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_timestamp  __ for--today",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_timestamp  __ for--today`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array-int  _ int",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array-int  _ int`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array-string  _ string",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array-string  _ string`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array--long",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array--long`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array-- boolean ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array-- boolean `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "-- c_array_timestamp -- ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`-- c_array_timestamp -- `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array -- float",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array -- float`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_array -- decimal",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_array -- decimal`"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "c_struct -- _  ",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "`c_struct -- _  `"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_short",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_short"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_int",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_int"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_long",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_long"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_decimal",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_decimal"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_float",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_float"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_boolean",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_boolean"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_double",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_double"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_string",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_string"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_date",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_date"
+                          },
+                          "description" : ""
+                        }, {
+                          "target" : "p_timestamp",
+                          "expression" : {
+                            "format" : "sql",
+                            "expression" : "p_timestamp"
+                          },
+                          "description" : ""
+                        } ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "jiGNL3C_2hXv9zvRilmeP$$ESSC4eRR6Ot-f_rIcw_pP" : {
+              "id" : "jiGNL3C_2hXv9zvRilmeP$$ESSC4eRR6Ot-f_rIcw_pP",
+              "component" : "Reformat",
+              "metadata" : {
+                "label" : "Reformat_3_1",
+                "slug" : "Reformat_3_1",
+                "x" : -110,
+                "y" : 183,
+                "phase" : 0,
+                "cache" : false,
+                "detailedStats" : false,
+                "isImported" : false
+              },
+              "ports" : {
+                "inputs" : [ {
+                  "id" : "V0cqbqmq1iekEFtvXVoCX$$XD3uZcliw6Su0Xk9aMavn",
+                  "slug" : "in",
+                  "isStreaming" : false
+                } ],
+                "outputs" : [ {
+                  "id" : "k3m-wgXN7AdI1qeeM3boA$$XARlawNbqKAnTSVK-m1Ub",
+                  "slug" : "out",
+                  "isStreaming" : false
+                } ],
+                "selectedInputFields" : [ ],
+                "isCustomOutputSchema" : false
+              },
+              "properties" : {
+                "columnsSelector" : [ "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c- short", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c  - int", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##- c long", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_decimal  -  ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_float-__  ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c -  boolean _  ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_double", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c-string", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_date-for today", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_timestamp  __ for--today", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array-int  _ int", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array-string  _ string", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array--long", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array-- boolean ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##-- c_array_timestamp -- ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array -- float", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_array -- decimal", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##c_struct -- _  ", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_short", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_int", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_long", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_decimal", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_float", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_boolean", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_double", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_string", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_date", "24t3cwqthmZoUjp85pEOq$$UerKfFRLdw9WthIAkAF_s##p_timestamp" ],
+                "expressions" : [ {
+                  "target" : "c- short",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c- short`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c  - int",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c  - int`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "- c long",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`- c long`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_decimal  -  ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_decimal  -  `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_float-__  ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_float-__  `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c -  boolean _  ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c -  boolean _  `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_double",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "c_double"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c-string",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c-string`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_date-for today",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_date-for today`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_timestamp  __ for--today",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_timestamp  __ for--today`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array-int  _ int",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array-int  _ int`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array-string  _ string",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array-string  _ string`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array--long",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array--long`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array-- boolean ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array-- boolean `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "-- c_array_timestamp -- ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`-- c_array_timestamp -- `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array -- float",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array -- float`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_array -- decimal",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_array -- decimal`"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "c_struct -- _  ",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "`c_struct -- _  `"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_short",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_short"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_int",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_int"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_long",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_long"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_decimal",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_decimal"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_float",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_float"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_boolean",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_boolean"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_double",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_double"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_string",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_string"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_date",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_date"
+                  },
+                  "description" : ""
+                }, {
+                  "target" : "p_timestamp",
+                  "expression" : {
+                    "format" : "sql",
+                    "expression" : "p_timestamp"
+                  },
+                  "description" : ""
+                } ]
+              }
+            }
+          }
+        },
+        "4zrXJ1pBVISuC3q-XDTmZ$$vxGMCZONRGKNbspYxFRe2" : {
+          "id" : "4zrXJ1pBVISuC3q-XDTmZ$$vxGMCZONRGKNbspYxFRe2",
+          "component" : "Limit",
+          "metadata" : {
+            "label" : "Limit_1_1",
+            "slug" : "Limit_1_1",
+            "x" : 687,
+            "y" : 456,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "xALKBDqeByJtLXfo1WOKO$$vtDlZ78-42g_OqoIvj_oq",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "g6spxFdnq3qgPqw265z3O$$Xkqn59uh8MVUzVKw9kVy4",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "limit" : "25"
+          }
+        },
+        "Q732qOBLhcrT2x0MvHU_E$$AEToO4N74P5-TOd_6oR04" : {
+          "id" : "Q732qOBLhcrT2x0MvHU_E$$AEToO4N74P5-TOd_6oR04",
+          "component" : "OrderBy",
+          "metadata" : {
+            "label" : "OrderBy_2_1",
+            "slug" : "OrderBy_2_1",
+            "x" : 1615,
+            "y" : 516.9000000000001,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "0uCfiFMPscHuPFLOtLWun$$Jhfnz8pifbl-XhZtgkVlF",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "Nljh_h-Q4z_oo_ltnGgSe$$edoA0-3hDqz_Mb6MIj27r",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "columnsSelector" : [ "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c- short", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c  - int", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##- c long", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_decimal  -  ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_float-__  ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c -  boolean _  ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_double", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c-string", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_date-for today", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_timestamp  __ for--today", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array-int  _ int", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array-string  _ string", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array--long", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array-- boolean ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##-- c_array_timestamp -- ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array -- float", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_array -- decimal", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##c_struct -- _  ", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_short", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_int", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_long", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_decimal", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_float", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_boolean", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_double", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_string", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_date", "8btip9sItc9iXkugGvA6i$$T_YnAhFaiXI-7Q57MpPRQ##p_timestamp" ],
+            "orders" : [ {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c- short`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c  - int`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`- c long`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_decimal  -  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_float-__  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c -  boolean _  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "c_double"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c-string`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_date-for today`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_timestamp  __ for--today`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-int  _ int`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-string  _ string`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array--long`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array-- boolean `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`-- c_array_timestamp -- `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- float`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_array -- decimal`"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_struct -- _  `"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_short"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_int"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_long"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_decimal"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_float"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_boolean"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_double"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_string"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_date"
+              },
+              "sortType" : "asc"
+            }, {
+              "expression" : {
+                "format" : "sql",
+                "expression" : "p_timestamp"
+              },
+              "sortType" : "asc"
+            } ]
+          }
+        },
+        "UAoeMkiNt9Kl_Tr2PMzV3$$zFNSiTxBP1KaPi2VfICC2" : {
+          "id" : "UAoeMkiNt9Kl_Tr2PMzV3$$zFNSiTxBP1KaPi2VfICC2",
+          "component" : "Lookup",
+          "metadata" : {
+            "label" : "Lookup_1_1",
+            "slug" : "Lookup_1_1",
+            "x" : 462,
+            "y" : 163,
+            "phase" : -1,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "ignb56hmgM2yz9DHIoeBm$$WFdj4mbNYBS1iFb3bqhN0",
+              "slug" : "in0",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "isRange" : false,
+            "keyColumns" : [ "customer_id", "first_name" ],
+            "valueColumns" : [ "last_name", "phone" ],
+            "processName" : "LookupTest"
+          }
+        },
+        "A9rElKDgLrUiv9NV-Gb_N$$oLcoyWSajB96cj_UjB7gM" : {
+          "id" : "A9rElKDgLrUiv9NV-Gb_N$$oLcoyWSajB96cj_UjB7gM",
+          "component" : "Source",
+          "metadata" : {
+            "label" : "src_csv_all_type_no_partition_1",
+            "slug" : "src_csv_all_type_no_partition_1",
+            "x" : 240,
+            "y" : 260,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ ],
+            "outputs" : [ {
+              "id" : "0NwLDePbq8XoET6rLo-n3$$qqbCnjgSFxmc9ap6Q2yzj",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "datasetId" : "datasets/src_avro_CustsDatasetInput"
+          }
+        },
+        "40x82-YyIIUk7pIhht2LX$$8yJkJueK979QEPVDHFvgb" : {
+          "id" : "40x82-YyIIUk7pIhht2LX$$8yJkJueK979QEPVDHFvgb",
+          "component" : "Aggregate",
+          "metadata" : {
+            "label" : "Aggregate_1_1",
+            "slug" : "Aggregate_1_1",
+            "x" : 1562,
+            "y" : 194,
+            "phase" : 0,
+            "cache" : false,
+            "detailedStats" : false,
+            "isImported" : false
+          },
+          "ports" : {
+            "inputs" : [ {
+              "id" : "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk",
+              "slug" : "in",
+              "isStreaming" : false
+            } ],
+            "outputs" : [ {
+              "id" : "JSwGY5d6RoYVcwEbme7Hq$$Xr3S2P23gjlnFDsAXufsV",
+              "slug" : "out",
+              "isStreaming" : false
+            } ],
+            "selectedInputFields" : [ ],
+            "isCustomOutputSchema" : false
+          },
+          "properties" : {
+            "allIns" : false,
+            "doPivot" : false,
+            "aggregate" : [ {
+              "_row_id" : null,
+              "target" : "c- short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c- short`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c  - int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c  - int`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "- c long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`- c long`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_decimal  -  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_decimal  -  `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_float-__  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_float-__  `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c -  boolean _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c -  boolean _  `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(c_double)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c-string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c-string`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_date-for today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_date-for today`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_timestamp  __ for--today",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_timestamp  __ for--today`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-int  _ int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array-int  _ int`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-string  _ string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array-string  _ string`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array--long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array--long`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array-- boolean ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array-- boolean `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "-- c_array_timestamp -- ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`-- c_array_timestamp -- `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array -- float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array -- float`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_array -- decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_array -- decimal`)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "c_struct -- _  ",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(`c_struct -- _  `)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_short",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_short)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_int",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_int)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_long",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_long)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_decimal",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_decimal)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_float",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_float)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_boolean",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_boolean)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_double",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_double)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_string",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_string)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_date",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_date)"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "p_timestamp",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "first(p_timestamp)"
+              },
+              "description" : ""
+            } ],
+            "allowSelection" : true,
+            "pivotColumn" : null,
+            "pivotValues" : [ ],
+            "activeTab" : "groupBy",
+            "columnsSelector" : [ "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_date-for today", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_timestamp  __ for--today", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c- short", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c  - int", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##- c long", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_decimal  -  ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_float-__  ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c -  boolean _  ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_double", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c-string", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array-int  _ int", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array-string  _ string", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array--long", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array-- boolean ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##-- c_array_timestamp -- ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array -- float", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_array -- decimal", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##c_struct -- _  ", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_short", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_int", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_long", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_decimal", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_float", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_boolean", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_double", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_string", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_date", "fr58RGTQDBAI_y4evrYTL$$3TbtWDZnERBO_NArzM6kk##p_timestamp" ],
+            "groupBy" : [ {
+              "_row_id" : null,
+              "target" : "`c_date-for today`",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_date-for today`"
+              },
+              "description" : ""
+            }, {
+              "_row_id" : null,
+              "target" : "`c_timestamp  __ for--today`",
+              "expression" : {
+                "format" : "sql",
+                "expression" : "`c_timestamp  __ for--today`"
+              },
+              "description" : ""
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false
+  }
+}

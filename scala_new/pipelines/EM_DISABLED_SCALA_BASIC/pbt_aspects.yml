@@ -1,0 +1,8 @@
+version: 1
+configurations:
+- test-random3
+- test-random1
+- test-random2
+- default
+- test_all_instancevalues
+dependencies: []

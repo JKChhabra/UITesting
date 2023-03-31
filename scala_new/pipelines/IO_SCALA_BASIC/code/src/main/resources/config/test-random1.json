@@ -1,0 +1,10 @@
+{
+  "c_record3" : {
+    "c_val3" : {
+      "crr" : "erwertertds"
+    }
+  },
+  "bool" : true,
+  "c_array" : [ "test fixed" ],
+  "c_test" : "   "
+}

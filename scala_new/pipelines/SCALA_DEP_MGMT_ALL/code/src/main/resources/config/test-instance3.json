@@ -1,0 +1,56 @@
+{
+  "c_record_complex" : {
+    "cr_record" : { }
+  },
+  "SubGraph_1" : {
+    "CONFIG_BOOLEAN" : false,
+    "CONFIG_FLOAT" : 3454.345458984375,
+    "c_record_complex" : {
+      "cr_record" : { }
+    }
+  },
+  "CONFIG_FLOAT" : 3454.345458984375,
+  "CONFIG_BOOLEAN" : false,
+  "all_type_scala_sg_1" : {
+    "CONFIG_BOOLEAN" : false,
+    "CONFIG_FLOAT" : 3454.345458984375,
+    "c_record_complex" : {
+      "cr_record" : { }
+    },
+    "recursive_1" : {
+      "CONFIG_BOOLEAN" : false,
+      "CONFIG_FLOAT" : 3454.345458984375,
+      "c_record_complex" : {
+        "cr_record" : { }
+      },
+      "Subgraph_2_1" : {
+        "CONFIG_BOOLEAN" : false,
+        "CONFIG_FLOAT" : 3454.345458984375,
+        "c_record_complex" : {
+          "cr_record" : { }
+        },
+        "Subgraph_3_1" : {
+          "CONFIG_BOOLEAN" : false,
+          "CONFIG_FLOAT" : 3454.345458984375,
+          "c_record_complex" : {
+            "cr_record" : { }
+          },
+          "Subgraph_4_1" : {
+            "CONFIG_BOOLEAN" : false,
+            "CONFIG_FLOAT" : 3454.345458984375,
+            "c_record_complex" : {
+              "cr_record" : { }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Subgraph_2" : {
+    "CONFIG_BOOLEAN" : false,
+    "CONFIG_FLOAT" : 3454.345458984375,
+    "c_record_complex" : {
+      "cr_record" : { }
+    }
+  }
+}
