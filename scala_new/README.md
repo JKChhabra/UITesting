@@ -479,3 +479,7 @@ test
 *** Release notes for version: 121 ***
 
 asdf
+
+*** Release notes for version: 1.0 ***
+
+This is release 1.0

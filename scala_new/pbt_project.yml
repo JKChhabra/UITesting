@@ -1,6 +1,6 @@
 name: ScalaProject
 description: ''
-version: '121'
+version: '1.0'
 author: abhisheks+e2etests@simpledatalabs.com
 language: scala
 buildSystem: ''
@@ -1567,6 +1567,10 @@ subgraphs:
     createdAt: '2022-06-28 17:47:43'
     modifiedAt: '2022-06-28 17:47:43'
 sqlModels: {}
+sqlMacros: {}
+sqlSeeds: {}
+sqlSources: {}
+sqlUnreferencedSources: {}
 sqlPipeline: null
 dependencies:
 - type: coordinates
